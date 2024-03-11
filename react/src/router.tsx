@@ -7,7 +7,11 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <Home />
-    }
+    },
+    {
+        path: "/contact",
+        element: <Home />
+    },
 ])
 
 export default router

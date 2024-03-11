@@ -1,12 +1,15 @@
-export default {
+module.exports = {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
-        colors: {
-            primary: "#449c6f",
-            black: "#000000",
-            white: "#ffffff",
+        extend: {
+            colors: {
+                primary: "#449c6f",
+                secondary: "#e8ede8",
+            },
+            fontSize: {
+                clamp: "clamp(1rem, 5vw, 3.75rem)",
+            },
         },
-        extend: {},
     },
     plugins: [],
 };
