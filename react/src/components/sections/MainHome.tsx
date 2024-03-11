@@ -6,7 +6,7 @@ import main_image from "../../assets/images/main_image.png"
 
 export default function MainHome() {
     return (
-        <div className="relative flex justify-between h-[43rem] max-w-[89rem] mx-auto  ">
+        <div className="relative flex justify-between h-[43rem] max-w-[89rem] mx-auto z-40">
             <div className="pt-20">
                 <div className=" bg-secondary items-center px-2 rounded-md inline-flex h-[2.5rem] mb-3">
                     <p className="text-primary font-medium">CERTIFICATED SPECIALISTS</p>
@@ -26,7 +26,7 @@ export default function MainHome() {
                 </button>
             </div>
 
-            <div className="absolute -bottom-10 rounded-lg left-1/2 transform -translate-x-1/2 w-full h-[8rem] shadow px-40 flex justify-between">
+            <div className="absolute -bottom-10 bg-white rounded-lg left-1/2 transform -translate-x-1/2 w-full h-[8rem] shadow px-40 flex justify-between">
                 <InfoHome text1="6 +" text2="Specialist" />
                 <InfoHome text1="1000 +" text2="Reservations" />
                 <InfoHome text1="300 +" text2="Patient Capacity" />
