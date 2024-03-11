@@ -6,3 +6,10 @@
     width: 100vw;
     height: 100vh;
 }
+
+.shadow {
+
+    -webkit-box-shadow: -1px 0px 35px -20px rgba(141, 141, 141, 1);
+    -moz-box-shadow: -1px 0px 35px -20px rgba(141, 141, 141, 1);
+    box-shadow: -1px 0px 35px -20px rgba(141, 141, 141, 1);
+}
