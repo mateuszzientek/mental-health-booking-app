@@ -6,7 +6,7 @@ import specialist4 from "../../assets/images/specialist4.png"
 
 export default function SpecialistSection() {
     return (
-        <div className="w-[75rem] mx-auto pb-32">
+        <div className="w-[75rem] mx-auto pb-40">
             <div className=" bg-secondary items-center px-2 rounded-md inline-flex h-[2.5rem] mb-3">
                 <p className="text-primary font-medium">Team members</p>
             </div>
