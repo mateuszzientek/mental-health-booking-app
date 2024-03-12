@@ -5,11 +5,10 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function ReservationSection() {
     return (
-        <div className="flex items-start justify-between  w-[75rem] mx-auto  mt-40 pb-40">
+        <div className="flex items-start justify-between  w-[75rem] mx-auto  mt-32 pb-32">
             <div>
                 <div className=" bg-secondary items-center px-2 rounded-md inline-flex h-[2.5rem] mb-3">
                     <p className="text-primary font-medium">Don't hesitate!</p>
-
                 </div>
 
                 <div>
