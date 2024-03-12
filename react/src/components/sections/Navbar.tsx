@@ -10,7 +10,7 @@ import HeroLink from "../elements/HeroLink";
 
 export default function Navbar() {
     return (
-        <>
+        <div >
             <div className="flex  bg-[#449c6f] h-12">
                 <div className="flex items-center justify-between mx-auto w-[89rem]">
                     <div className="flex items-center h-full space-x-4">
@@ -40,8 +40,8 @@ export default function Navbar() {
 
             </div>
 
-            <div className="flex h-28 shadow-md">
-                <div className='flex items-center justify-between h-32 w-[89rem] mx-auto '>
+            <div className="flex h-28 shadow-md items-center bg-white">
+                <div className=' flex items-center justify-between h-32 w-[89rem] mx-auto '>
 
                     <LazyLoadImage
                         src={logo_light}
@@ -70,6 +70,6 @@ export default function Navbar() {
 
                 </div>
             </div>
-        </>
+        </div>
     );
 }

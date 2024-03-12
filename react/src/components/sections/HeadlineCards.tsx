@@ -7,7 +7,7 @@ import { GiProgression } from "react-icons/gi";
 export default function HeadlineCards() {
     return (
 
-        <div className="flex flex-col justify-center items-center z-10 pt-40 pb-40">
+        <div className="flex flex-col justify-center items-center z-10 m-40 ">
             <p className="text-3xl text-black/80">The <span className="font-bold">highest standard</span> of mental care!</p>
             <p className="text-xl text-black/70 w-[38rem] text-center mt-6">Our mission is to ensure the highest standards of mental health care.
                 We are dedicated to supporting our patients on their journey to complete mental and emotional well-being.</p>
