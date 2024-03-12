@@ -2,6 +2,7 @@ import Navbar from "../components/sections/Navbar";
 import MainHome from "../components/sections/MainHome";
 import HeadlineCards from "../components/sections/HeadlineCards";
 import ReservationSection from "../components/sections/ReservationSection";
+import SpecialistSection from "../components/sections/SpecialistSection";
 
 export default function Home() {
     return (
@@ -10,6 +11,7 @@ export default function Home() {
             <MainHome />
             <HeadlineCards />
             <ReservationSection />
+            <SpecialistSection />
         </>
     );
 }
