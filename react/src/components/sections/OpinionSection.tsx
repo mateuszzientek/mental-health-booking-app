@@ -2,10 +2,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination"
 import "swiper/css/navigation"
-
 import { Pagination, Autoplay } from 'swiper/modules';
-
-import SampleArrow from "../elements/SampleArrow";
+import ReviewCard from "../elements/ReviewCard";
+import comments from "../../resources/comments";
 
 
 export default function OpinionSection() {
@@ -44,24 +43,11 @@ export default function OpinionSection() {
                     }}
                     modules={[Autoplay, Pagination]}
                 >
-                    <SwiperSlide>
-                        <SampleArrow />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <SampleArrow />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <SampleArrow />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <SampleArrow />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <SampleArrow />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <SampleArrow />
-                    </SwiperSlide>
+                    {comments.map((comment) => (
+                        <SwiperSlide>
+                            <ReviewCard key={comment.id} text={comment.text} name={comment.name} avatar={comment.avatar} />
+                        </SwiperSlide>
+                    ))}
                 </Swiper>
             </div>
         </div>

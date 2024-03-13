@@ -25,7 +25,7 @@ body {
 
 
 @media (min-width: 1300px) {
-    .swiper-slide-next {
+    .swiper-slide-active {
         scale: 110%;
     }
 }
