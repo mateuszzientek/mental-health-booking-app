@@ -40,7 +40,7 @@ export default function Navbar() {
 
             </div>
 
-            <div className="flex h-28 shadow-md items-center bg-white">
+            <div className="flex h-28 shadow-md items-center bg-white dark:bg-black">
                 <div className=' flex items-center justify-between h-32 w-[89rem] mx-auto '>
 
                     <LazyLoadImage

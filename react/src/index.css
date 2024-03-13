@@ -5,6 +5,7 @@
 #root {
     width: 100vw;
     height: 100vh;
+    --primary: 68, 156, 111;
 }
 
 body {
@@ -28,4 +29,12 @@ body {
     .swiper-slide-active {
         scale: 110%;
     }
+}
+
+.light {
+    --background: 255, 255, 255;
+}
+
+.dark {
+    --background: 0, 0, 0;
 }

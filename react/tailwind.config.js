@@ -3,8 +3,9 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: "#449c6f",
+                primary: "rgba(var(--primary))",
                 secondary: "#e8ede8",
+                background: "rgba(var(--background))",
             },
             fontSize: {
                 clamp: "clamp(1rem, 5vw, 3.75rem)",

@@ -43,8 +43,8 @@ export default function OpinionSection() {
                     }}
                     modules={[Autoplay, Pagination]}
                 >
-                    {comments.map((comment) => (
-                        <SwiperSlide>
+                    {comments.map((comment, index) => (
+                        <SwiperSlide key={index}>
                             <ReviewCard key={comment.id} text={comment.text} name={comment.name} avatar={comment.avatar} />
                         </SwiperSlide>
                     ))}
