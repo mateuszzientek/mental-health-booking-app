@@ -11,7 +11,7 @@ import HeroLink from "../elements/HeroLink";
 export default function Navbar() {
     return (
         <div >
-            <div className="flex  bg-[#449c6f] h-12">
+            <div className="flex  bg-primary h-12">
                 <div className="flex items-center justify-between mx-auto w-[89rem]">
                     <div className="flex items-center h-full space-x-4">
                         <div className="border-white/30 border-l-2 h-full"></div>

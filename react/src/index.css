@@ -17,3 +17,15 @@ body {
     -moz-box-shadow: -1px 0px 35px -20px rgba(141, 141, 141, 1);
     box-shadow: -1px 0px 35px -20px rgba(141, 141, 141, 1);
 }
+
+
+.swiper-pagination-bullet-active {
+    background-color: #449c6f !important;
+}
+
+
+@media (min-width: 1300px) {
+    .swiper-slide-next {
+        scale: 110%;
+    }
+}

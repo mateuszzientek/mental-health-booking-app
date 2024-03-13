@@ -11,7 +11,7 @@ interface SpecialistCardProps {
 
 export default function SpecialistCard(props: SpecialistCardProps) {
     return (
-        <div className="group bg-white w-[18rem] h-[23rem] shadow-xl rounded-xl  duration-300 ease-in-out hover:scale-105 hover:cursor-pointer">
+        <div className="group mx-auto bg-white w-[18rem] h-[23rem] shadow-xl rounded-xl  duration-300 ease-in-out hover:scale-105 hover:cursor-pointer">
             <div className="flex items-end justify-center h-[60%] bg-secondary rounded-t-xl group-hover:bg-primary">
                 <LazyLoadImage
                     src={props.img}
