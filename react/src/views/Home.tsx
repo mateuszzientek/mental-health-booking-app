@@ -5,6 +5,7 @@ import ReservationSection from "../components/sections/ReservationSection";
 import SpecialistSection from "../components/sections/SpecialistSection";
 import AboutUsSection from "../components/sections/AboutUsSection";
 import OpinionSection from "../components/sections/OpinionSection";
+import MobileAppSection from "../components/sections/MobileAppSection";
 
 export default function Home() {
     return (
@@ -16,6 +17,7 @@ export default function Home() {
             <SpecialistSection />
             <AboutUsSection />
             <OpinionSection />
+            <MobileAppSection />
         </>
     );
 }

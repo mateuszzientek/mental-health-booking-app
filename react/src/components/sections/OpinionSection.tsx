@@ -10,9 +10,9 @@ import comments from "../../resources/comments";
 export default function OpinionSection() {
 
     return (
-        <div className="p-20 bg-secondary">
+        <div className="py-14 bg-secondary">
 
-            <div className='max-w-[75rem] mx-auto  '>
+            <div className='max-w-[75rem] mx-auto'>
 
                 <div className="flex flex-col items-center justify-center">
                     <h2 className="text-4xl font-bold text-black/80 ">What our patients say</h2>
