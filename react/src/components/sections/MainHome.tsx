@@ -5,6 +5,8 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import main_image from "../../assets/images/main_image.png"
 import Navbar from "./Navbar";
 
+
+
 export default function MainHome() {
     return (
         <div className="bg-background ">

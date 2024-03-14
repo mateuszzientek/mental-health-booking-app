@@ -9,10 +9,12 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import "react-lazy-load-image-component/src/effects/blur.css";
 import HeroLink from "../elements/HeroLink";
 import SwitchDarkMode from "../elements/SwitchDarkMode";
+import { useSelector } from 'react-redux';
+import { RootState } from "../../state/store";
 
 export default function Navbar() {
 
-    const theme = localStorage.getItem("theme")
+    const theme = useSelector((state: RootState) => state.theme.theme)
 
     return (
         <div>

@@ -2,20 +2,24 @@ import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { LuSun } from "react-icons/lu";
 import { IoMoonOutline } from "react-icons/io5";
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from "../../state/store";
+import { setTheme } from "../../state/theme/themeSlice";
 
 export default function SwitchDarkMode() {
 
-    const theme = localStorage.getItem("theme")
+    const dispatch = useDispatch();
+    const theme = useSelector((state: RootState) => state.theme.theme);
 
     const [isSelected, setIsSelected] = useState(theme === "light" ? false : true)
 
     useEffect(() => {
 
         if (isSelected) {
-            localStorage.setItem("theme", "dark")
+            dispatch(setTheme("dark"));
             document.body.className = "dark";
         } else {
-            localStorage.setItem("theme", "light")
+            dispatch(setTheme("light"));
             document.body.className = "light";
         }
 
