@@ -4,12 +4,16 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import logo_light from "../../assets/images/logo_light.png"
+import logo_dark from "../../assets/images/logo_dark.png"
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import "react-lazy-load-image-component/src/effects/blur.css";
 import HeroLink from "../elements/HeroLink";
 import SwitchDarkMode from "../elements/SwitchDarkMode";
 
 export default function Navbar() {
+
+    const theme = localStorage.getItem("theme")
+
     return (
         <div>
             <div className="flex  bg-primary h-12">
@@ -41,11 +45,11 @@ export default function Navbar() {
 
             </div>
 
-            <div className="flex h-28 shadow-md items-center bg-white dark:bg-black z-40">
+            <div className="flex h-28 shadow-md items-center bg-background z-40">
                 <div className=' flex items-center justify-between h-32 w-[89rem] mx-auto '>
 
                     <LazyLoadImage
-                        src={logo_light}
+                        src={theme === "light" ? logo_light : logo_dark}
                         alt="Logo"
                         effect="blur"
                         className="w-[12rem]"
@@ -63,7 +67,7 @@ export default function Navbar() {
                     <div className="flex space-x-4 items-center">
                         <SwitchDarkMode />
                         <button className="w-[7rem] h-[3rem] rounded-md border-2 border-primary">
-                            <p className="text-primary ">Sign In</p>
+                            <p className="text-primary dark:text-white">Sign In</p>
                         </button>
                         <button className="w-[7rem] h-[3rem] rounded-md bg-primary">
                             <p className="text-white ">Sign Up</p>

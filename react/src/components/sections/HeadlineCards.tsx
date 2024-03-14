@@ -6,10 +6,11 @@ import { GiProgression } from "react-icons/gi";
 
 export default function HeadlineCards() {
     return (
-        <>
-            <div className="flex flex-col justify-center items-center z-10 mt-40 w-[75rem] mx-auto">
-                <h2 className="text-4xl text-black/80">The <span className="font-bold">highest standard</span> of mental care!</h2>
-                <p className="text-xl text-black/60 w-[42rem] text-center mt-6">Our mission is to ensure the highest standards of mental health care.
+
+        <div className="bg-background pt-40">
+            <div className="flex flex-col justify-center items-center z-10  w-[75rem] mx-auto">
+                <h2 className="text-4xl text-text_80">The <span className="font-bold">highest standard</span> of mental care!</h2>
+                <p className="text-xl text-text_60 w-[42rem] text-center mt-6">Our mission is to ensure the highest standards of mental health care.
                     We are dedicated to supporting our patients on their journey to complete mental and emotional well-being.</p>
             </div>
             <div className="flex justify-between items-center space-x-12 mt-24 w-[75rem] mx-auto">
@@ -20,7 +21,7 @@ export default function HeadlineCards() {
 
             </div>
 
-        </>
+        </div>
 
 
     );

@@ -12,7 +12,7 @@ export default function HeroLink(props: HeroLinkProps) {
             style={({ isActive }) => {
                 return isActive ? { fontWeight: "bold", pointerEvents: "none", color: "#449c6f" } : {}
             }}
-            className={"text-xl text-black duration-100 hover:scale-105"}
+            className={"text-xl text-text_90  duration-100 hover:scale-105"}
         >
             {props.text}
         </NavLink>

@@ -14,7 +14,7 @@ export default function ReviewCard(props: ReviewCardProps) {
     }
 
     return (
-        <div className="mx-auto mt-14 mb-14  w-[23rem] h-[10rem] rounded-md bg-white">
+        <div className="mx-auto mt-14 mb-14  w-[23rem] h-[10rem] rounded-md bg-white dark:bg-white/80">
             <div className="flex flex-col p-6 space-y-5">
 
                 <div className="flex space-x-4">

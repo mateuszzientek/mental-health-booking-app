@@ -6,7 +6,6 @@ import SpecialistSection from "../components/sections/SpecialistSection";
 import AboutUsSection from "../components/sections/AboutUsSection";
 import OpinionSection from "../components/sections/OpinionSection";
 import MobileAppSection from "../components/sections/MobileAppSection";
-import Navbar from "../components/sections/Navbar";
 
 export default function Home() {
     return (

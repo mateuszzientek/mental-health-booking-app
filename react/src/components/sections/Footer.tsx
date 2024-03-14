@@ -6,8 +6,8 @@ import { NavLink } from "react-router-dom";
 
 export default function Footer() {
     return (
-        <div className=" bg-secondary">
-            <div className="py-12 flex mx-auto  justify-between w-[75rem]  bg-secondary">
+        <div className=" bg-background_secondary">
+            <div className="py-12 flex mx-auto  justify-between w-[75rem]  bg-background_secondary">
 
                 <div>
                     <LazyLoadImage

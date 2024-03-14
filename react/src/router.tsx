@@ -7,11 +7,11 @@ import LoadingAnimationPage from "./components/sections/LoadingAnimationPage";
 const Home = lazy(() => import("./views/Home"))
 const Footer = lazy(() => import("./components/sections/Footer"))
 const Navbar = lazy(() => import("./components/sections/Navbar"))
+const Contact = lazy(() => import("./views/Contact"))
 
 
 const Layout = ({ children }: { children: ReactNode }) => (
     <Suspense fallback={<LoadingAnimationPage />}>
-        <Navbar />
         <ButtonToUp />
         {children}
         <Footer />
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/contact",
-        element: <Layout><Home /></Layout>
+        element: <Layout><Contact /></Layout>
     },
 ]);
 

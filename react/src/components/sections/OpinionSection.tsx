@@ -10,7 +10,7 @@ import comments from "../../resources/comments";
 export default function OpinionSection() {
 
     return (
-        <div className="py-14 bg-secondary">
+        <div className="py-14 bg-background_secondary">
 
             <div className='max-w-[75rem] mx-auto'>
 
