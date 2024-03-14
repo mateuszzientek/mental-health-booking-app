@@ -7,10 +7,11 @@ import logo_light from "../../assets/images/logo_light.png"
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import "react-lazy-load-image-component/src/effects/blur.css";
 import HeroLink from "../elements/HeroLink";
+import SwitchDarkMode from "../elements/SwitchDarkMode";
 
 export default function Navbar() {
     return (
-        <div >
+        <div>
             <div className="flex  bg-primary h-12">
                 <div className="flex items-center justify-between mx-auto w-[89rem]">
                     <div className="flex items-center h-full space-x-4">
@@ -40,7 +41,7 @@ export default function Navbar() {
 
             </div>
 
-            <div className="flex h-28 shadow-md items-center bg-white dark:bg-black">
+            <div className="flex h-28 shadow-md items-center bg-white dark:bg-black z-40">
                 <div className=' flex items-center justify-between h-32 w-[89rem] mx-auto '>
 
                     <LazyLoadImage
@@ -59,7 +60,8 @@ export default function Navbar() {
                     </div>
 
 
-                    <div className="flex space-x-4">
+                    <div className="flex space-x-4 items-center">
+                        <SwitchDarkMode />
                         <button className="w-[7rem] h-[3rem] rounded-md border-2 border-primary">
                             <p className="text-primary ">Sign In</p>
                         </button>
