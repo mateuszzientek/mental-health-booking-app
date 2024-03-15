@@ -50,3 +50,13 @@ body {
     --text_80: 208, 208, 208;
     --text_90: 229, 229, 229;
 }
+
+.nav-link {
+    color: inherit;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    pointer-events: none;
+    color: #449c6f;
+}

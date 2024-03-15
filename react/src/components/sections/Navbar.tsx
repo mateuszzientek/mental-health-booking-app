@@ -39,11 +39,17 @@ export default function Navbar() {
 
 
                     <div className="flex items-center space-x-4 h-full">
-                        <FaFacebookSquare color="white" size={25} />
+                        <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">
+                            <FaFacebookSquare color="white" size={25} className="hover:scale-110 duration-300 ease-in-out" />
+                        </a>
                         <div className="border-white/30 border-l-2 h-full"></div>
-                        <FaSquareInstagram color="white" size={25} />
+                        <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">
+                            <FaSquareInstagram color="white" size={25} className="hover:scale-110 duration-300 ease-in-out" />
+                        </a>
                         <div className="border-white/30 border-l-2 h-full"></div>
-                        <FaSquareXTwitter color="white" size={25} />
+                        <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">
+                            <FaSquareXTwitter color="white" size={25} className="hover:scale-110 duration-300 ease-in-out" />
+                        </a>
                     </div>
                 </div>
 
@@ -52,12 +58,14 @@ export default function Navbar() {
             <div className="flex h-28 shadow-md items-center bg-background z-40">
                 <div className=' flex items-center justify-between h-32 w-[89rem] mx-auto '>
 
-                    <LazyLoadImage
-                        src={theme === "light" ? logo_light : logo_dark}
-                        alt="Logo"
-                        effect="blur"
-                        className="w-[12rem]"
-                    />
+                    <div onClick={() => navigate("/")}>
+                        <LazyLoadImage
+                            src={theme === "light" ? logo_light : logo_dark}
+                            alt="Logo"
+                            effect="blur"
+                            className="w-[12rem] cursor-pointer"
+                        />
+                    </div>
 
                     <div className="flex space-x-16">
                         <HeroLink link="/" text="Home" />

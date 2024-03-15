@@ -3,6 +3,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import logo_light from "../../assets/images/logo_light.png"
 import { CiFacebook, CiInstagram, CiTwitter } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
+import HeroLinkFooter from '../elements/HeroLinkFooter';
 
 export default function Footer() {
     return (
@@ -19,9 +20,15 @@ export default function Footer() {
 
                     <p className="text-base text-black/60 max-w-[15rem] mt-2">For years, we've been dedicated to promoting mental well-being for our patients.</p>
                     <div className='flex items-center space-x-4 mt-4'>
-                        <CiFacebook color="black" size={25} />
-                        <CiInstagram color="black" size={25} />
-                        <CiTwitter color="black" size={25} />
+                        <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">
+                            <CiFacebook color="black" size={25} className="hover:scale-110 duration-300 ease-in-out" />
+                        </a>
+                        <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">
+                            <CiInstagram color="black" size={25} className="hover:scale-110 duration-300 ease-in-out" />
+                        </a>
+                        <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">
+                            <CiTwitter color="black" size={25} className="hover:scale-110 duration-300 ease-in-out" />
+                        </a>
                     </div>
                 </div>
 
@@ -29,10 +36,10 @@ export default function Footer() {
 
                     <div className='flex flex-col space-y-1 text-black/80'>
                         <p className="text-xl text-black/80 font-medium mb-2">Quick Links</p>
-                        <NavLink to="/" className=""> Home</NavLink>
-                        <NavLink to="/appointment"> Book Appointment</NavLink>
-                        <NavLink to="/specialist"> Specialist</NavLink>
-                        <NavLink to="/contact"> Contact</NavLink>
+                        <HeroLinkFooter link="/" text="Home" />
+                        <HeroLinkFooter link="/appointment" text="Book Appointment" />
+                        <HeroLinkFooter link="/specialist" text="Specialist" />
+                        <HeroLinkFooter link="/contact" text="Contact" />
                     </div>
 
                     <div className='space-y-1 text-black/80'>
@@ -45,6 +52,6 @@ export default function Footer() {
                 </div>
 
             </div>
-        </div>
+        </div >
     );
 }

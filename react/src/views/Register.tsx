@@ -68,7 +68,7 @@ export default function Register() {
                 </div>
 
 
-                <button className="h-[3rem] rounded-md bg-primary px-4 mt-6 w-full">
+                <button className="h-[3rem] rounded-md bg-primary px-4 mt-6 w-full hover:bg-primary_darker">
                     <p className="text-white text-xl ">Register</p>
                 </button>
 

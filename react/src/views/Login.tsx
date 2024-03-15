@@ -46,13 +46,13 @@ export default function Login() {
 
                 <p className="text-lg font-medium text-primary mt-4 text-end">Forgot password?</p>
 
-                <button className="h-[3rem] rounded-md bg-primary px-4 mt-6 w-full">
+                <button className="h-[3rem] rounded-md bg-primary px-4 mt-6 w-full hover:bg-primary_darker">
                     <p className="text-white text-xl ">Log in</p>
                 </button>
 
                 <div className="flex justify-center items-center space-x-1 mt-3">
                     <p className="text-lg font-medium text-black/50 mt-4 text-end">Don't have an account?</p>
-                    <p onClick={() => navigate("/register")} className="text-lg font-medium text-primary mt-4 text-end cursor-pointer">Register</p>
+                    <p onClick={() => navigate("/register")} className="text-lg font-medium text-primary mt-4 text-end cursor-pointer ">Register</p>
                 </div>
             </div>
         </div>
