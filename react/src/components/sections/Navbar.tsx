@@ -73,7 +73,7 @@ export default function Navbar() {
                         <button onClick={() => navigate("/login")} className="group w-[7rem] h-[3rem] rounded-md border-2 border-primary hover:bg-primary hover:text-white ">
                             <p className="text-primary dark:text-white group-hover:text-white ">Sign In</p>
                         </button>
-                        <button className="w-[7rem] h-[3rem] rounded-md bg-primary hover:bg-primary_darker">
+                        <button onClick={() => navigate("/register")} className="w-[7rem] h-[3rem] rounded-md bg-primary hover:bg-primary_darker">
                             <p className="text-white ">Sign Up</p>
                         </button>
                     </div>

@@ -8,7 +8,7 @@ const Home = lazy(() => import("./views/Home"))
 const Footer = lazy(() => import("./components/sections/Footer"))
 const PageNotFound = lazy(() => import("./views/PageNotFound"))
 const Login = lazy(() => import("./views/Login"))
-
+const Register = lazy(() => import("./views/Register"))
 
 
 const Layout = ({ children }: { children: ReactNode }) => (
@@ -29,6 +29,13 @@ const router = createBrowserRouter([
         element:
             <Suspense fallback={<LoadingAnimationPage />}>
                 <Login />
+            </Suspense>
+    },
+    {
+        path: "/register",
+        element:
+            <Suspense fallback={<LoadingAnimationPage />}>
+                <Register />
             </Suspense>
     },
     {
