@@ -17,6 +17,10 @@ body {
     box-shadow: -1px 0px 35px -20px rgba(141, 141, 141, 1);
 }
 
+.drop-shadow {
+    filter: drop-shadow(1px 1px 3px #979797)
+}
+
 
 .swiper-pagination-bullet-active {
     background-color: #449c6f !important;

@@ -11,10 +11,12 @@ import HeroLink from "../elements/HeroLink";
 import SwitchDarkMode from "../elements/SwitchDarkMode";
 import { useSelector } from 'react-redux';
 import { RootState } from "../../state/store";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
 
     const theme = useSelector((state: RootState) => state.theme.theme)
+    const navigate = useNavigate();
 
     return (
         <div>
@@ -68,10 +70,10 @@ export default function Navbar() {
 
                     <div className="flex space-x-4 items-center">
                         <SwitchDarkMode />
-                        <button className="w-[7rem] h-[3rem] rounded-md border-2 border-primary">
-                            <p className="text-primary dark:text-white">Sign In</p>
+                        <button onClick={() => navigate("/login")} className="group w-[7rem] h-[3rem] rounded-md border-2 border-primary hover:bg-primary hover:text-white ">
+                            <p className="text-primary dark:text-white group-hover:text-white ">Sign In</p>
                         </button>
-                        <button className="w-[7rem] h-[3rem] rounded-md bg-primary">
+                        <button className="w-[7rem] h-[3rem] rounded-md bg-primary hover:bg-primary_darker">
                             <p className="text-white ">Sign Up</p>
                         </button>
                     </div>
