@@ -14,16 +14,20 @@ export default function MobileAppSection() {
                     <p className="text-lg text-text_60  max-w-[28rem] mt-6 ">Get the most out of our service by downloading our app! Unlock exclusive features, receive personalized recommendations, and stay connected on-the-go.</p>
 
                     <div className='flex items-center mt-6 space-x-4'>
-                        <img
-                            src={google}
-                            alt="Google photo"
-                            className="w-[9rem] hover:cursor-pointer hover:scale-105 transition duration-300 ease-in-out"
-                        />
-                        <img
-                            src={apple}
-                            alt="Apple photo"
-                            className="w-[9rem] hover:cursor-pointer hover:scale-105 transition duration-300 ease-in-out"
-                        />
+                        <a href="https://www.apple.com/" target="_blank" rel="noopener noreferrer">
+                            <img
+                                src={google}
+                                alt="Google photo"
+                                className="w-[9rem] hover:cursor-pointer hover:scale-105 transition duration-300 ease-in-out"
+                            />
+                        </a>
+                        <a href="https://www.apple.com/" target="_blank" rel="noopener noreferrer">
+                            <img
+                                src={apple}
+                                alt="Apple photo"
+                                className="w-[9rem] hover:cursor-pointer hover:scale-105 transition duration-300 ease-in-out"
+                            />
+                        </a>
                     </div>
                 </div>
                 <LazyLoadImage
