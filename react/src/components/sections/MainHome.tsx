@@ -44,7 +44,7 @@ export default function MainHome() {
                         src={main_image}
                         alt="Main image"
                         effect="blur"
-                        className="w-[40rem] pt-10 mr-14"
+                        className="w-[40rem] pt-10 mr-14 "
                     />
                 </div>
             </div>
