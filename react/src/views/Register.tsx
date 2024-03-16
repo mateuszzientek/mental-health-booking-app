@@ -1,17 +1,27 @@
 import avatar_login from "../assets/images/avatar_login.png"
 import { MdOutlineEmail, MdLockOutline } from "react-icons/md";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from "../state/store";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
+import axiosClient from "./axios-client";
+import { setToken, setUser } from "../state/user/userSlice";
 
 
 export default function Register() {
     const navigate = useNavigate();
-
     const theme = useSelector((state: RootState) => state.theme.theme)
+
+    const dispatch = useDispatch()
+
+    const nameRef = useRef<HTMLInputElement>(null);
+    const surnameRef = useRef<HTMLInputElement>(null);
+    const emailRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
+    const passwordConfirmationRef = useRef<HTMLInputElement>(null);
+
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
     const [isPasswordSecondVisible, setIsPasswordSecondVisible] = useState(false)
@@ -25,6 +35,25 @@ export default function Register() {
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+
+        const payload = {
+            name: nameRef.current?.value || '',
+            surname: surnameRef.current?.value || '',
+            email: emailRef.current?.value || '',
+            password: passwordRef.current?.value || '',
+            passwordConfirmation: passwordConfirmationRef.current?.value || ''
+        }
+
+        axiosClient.post("/signup", payload)
+            .then(({ data }) => {
+                dispatch(setUser(data.user))
+                dispatch(setToken(data.token))
+            }).catch(err => {
+                const response = err.response
+                if (response && response.status === 422) {
+                    console.log(response.data.errors)
+                }
+            })
     }
 
     return (
@@ -37,22 +66,22 @@ export default function Register() {
 
                         <div className="flex items-center border-[#cfcfcf] dark:border-[#929292] border-2 rounded-md w-full h-[3.5rem] mt-14 focus-within:border-black/50 dark:focus-within:border-black/70 ">
                             <IoPersonOutline color={theme === "dark" ? "#737373" : "#9e9e9e"} size={30} className="ml-4" />
-                            <input type="text" placeholder="Name" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373] " />
+                            <input ref={nameRef} type="text" placeholder="Name" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373] " />
                         </div>
 
                         <div className="flex items-center border-[#cfcfcf] dark:border-[#929292] border-2 rounded-md w-full h-[3.5rem] mt-4 focus-within:border-black/50 dark:focus-within:border-black/70 ">
                             <IoPersonOutline color={theme === "dark" ? "#737373" : "#9e9e9e"} size={30} className="ml-4" />
-                            <input type="text" placeholder="Surname" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
+                            <input ref={surnameRef} type="text" placeholder="Surname" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
                         </div>
 
                         <div className="flex items-center border-[#cfcfcf] dark:border-[#929292] border-2 rounded-md w-full h-[3.5rem] mt-4 focus-within:border-black/50 dark:focus-within:border-black/70 ">
                             <MdOutlineEmail color={theme === "dark" ? "#737373" : "#9e9e9e"} size={30} className="ml-4" />
-                            <input type="email" placeholder="Email" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
+                            <input ref={emailRef} type="email" placeholder="Email" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
                         </div>
 
                         <div className="flex items-center border-[#cfcfcf] dark:border-[#929292] border-2 rounded-md w-full h-[3.5rem] mt-4 focus-within:border-black/50 dark:focus-within:border-black/70 ">
                             <MdLockOutline color={theme === "dark" ? "#737373" : "#9e9e9e"} size={30} className="ml-4" />
-                            <input type={isPasswordVisible ? "text" : "password"} placeholder="Password" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
+                            <input ref={passwordRef} type={isPasswordVisible ? "text" : "password"} placeholder="Password" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
 
                             {isPasswordVisible ?
                                 <FiEyeOff onClick={() => handleChangeVisible()} size={30} color={theme === "dark" ? "#737373" : "#9e9e9e"} className="mr-4 cursor-pointer hover:scale-105" />
@@ -62,7 +91,7 @@ export default function Register() {
                         </div>
                         <div className="flex items-center border-[#cfcfcf] dark:border-[#929292] border-2 rounded-md w-full h-[3.5rem] mt-4 focus-within:border-black/50 dark:focus-within:border-black/70 ">
                             <MdLockOutline color={theme === "dark" ? "#737373" : "#9e9e9e"} size={30} className="ml-4" />
-                            <input type={isPasswordVisible ? "text" : "password"} placeholder="Confirm Password" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
+                            <input ref={passwordConfirmationRef} type={isPasswordVisible ? "text" : "password"} placeholder="Confirm Password" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
 
                             {isPasswordSecondVisible ?
                                 <FiEyeOff onClick={() => handleChangeSecondVisible()} size={30} color={theme === "dark" ? "#737373" : "#9e9e9e"} className="mr-4 cursor-pointer hover:scale-105" />
