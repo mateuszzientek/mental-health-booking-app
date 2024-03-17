@@ -1,13 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 interface UserState{
-    user: null | {};
+    user: null | {
+        id: number,
+        name: string,
+        surname: string,
+        email: string
+    };
     token: null | string
 }
 
 const initialState: UserState = {
     user: null,
-    token: localStorage.getItem('ACCESS_TOKEN') 
+    token: localStorage.getItem('ACCESS_TOKEN')
 }
 
 const userSlice = createSlice({
@@ -22,11 +27,11 @@ const userSlice = createSlice({
             }else{
                 localStorage.removeItem('ACCESS_TOKEN');
             }
-           
+
           },
-        setUser: (state, action: PayloadAction<string>) =>{
-            state.user = action.payload
-          }
+          setUser: (state, action: PayloadAction<UserState['user']>) => {
+            state.user = action.payload;
+        }
     }
 })
 

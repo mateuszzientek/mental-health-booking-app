@@ -15,6 +15,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
 
+    const token = useSelector((state: RootState) => state.user.token)
+    const user = useSelector((state: RootState) => state.user.user)
+
     const theme = useSelector((state: RootState) => state.theme.theme)
     const navigate = useNavigate();
 
@@ -78,12 +81,20 @@ export default function Navbar() {
 
                     <div className="flex space-x-4 items-center">
                         <SwitchDarkMode />
-                        <button onClick={() => navigate("/login")} className="group w-[7rem] h-[3rem] rounded-md border-2 border-primary hover:bg-primary hover:text-white ">
-                            <p className="text-primary dark:text-white group-hover:text-white ">Sign In</p>
-                        </button>
-                        <button onClick={() => navigate("/register")} className="w-[7rem] h-[3rem] rounded-md bg-primary hover:bg-primary_darker">
-                            <p className="text-white ">Sign Up</p>
-                        </button>
+
+                        {!token ?
+                            <>
+                                <button onClick={() => navigate("/login")} className="group w-[7rem] h-[3rem] rounded-md border-2 border-primary hover:bg-primary hover:text-white ">
+                                    <p className="text-primary dark:text-white group-hover:text-white ">Sign In</p>
+                                </button>
+                                <button onClick={() => navigate("/register")} className="w-[7rem] h-[3rem] rounded-md bg-primary hover:bg-primary_darker">
+                                    <p className="text-white ">Sign Up</p>
+                                </button>
+                            </>
+
+                            : <button onClick={() => navigate("/login")} className="group w-[7rem] h-[3rem] rounded-md border-2 border-primary hover:bg-primary hover:text-white ">
+                                <p className="text-primary dark:text-white group-hover:text-white ">Logout</p>
+                            </button>}
                     </div>
 
                 </div>
