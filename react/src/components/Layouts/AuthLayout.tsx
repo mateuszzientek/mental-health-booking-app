@@ -5,7 +5,7 @@ import axiosClient from "../../views/axios-client";
 import { setUser } from "../../state/user/userSlice";
 import { RootState } from "../../state/store";
 import LoadingAnimationPage from "../sections/LoadingAnimationPage";
-
+import Navbar from "../sections/Navbar";
 
 
 export default function AuthLayout() {
@@ -47,6 +47,7 @@ export default function AuthLayout() {
                 <LoadingAnimationPage />
                 :
                 <div>
+                    <Navbar />
                     <Outlet />
                 </div>
             }

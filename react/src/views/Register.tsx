@@ -40,6 +40,13 @@ export default function Register() {
         setIsPasswordSecondVisible(!isPasswordSecondVisible)
     }
 
+    const handleChange = (name: string) => {
+        const updatedErrors = { ...errors }
+
+        delete updatedErrors[name]
+        setErrors(updatedErrors);
+    }
+
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
@@ -85,25 +92,25 @@ export default function Register() {
 
                         <div className="flex items-center border-[#cfcfcf] dark:border-[#929292] border-2 rounded-md w-full h-[3.5rem] mt-4 focus-within:border-black/50 dark:focus-within:border-black/70 ">
                             <IoPersonOutline color={theme === "dark" ? "#737373" : "#9e9e9e"} size={30} className="ml-4" />
-                            <input ref={nameRef} type="text" placeholder="Name" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373] " />
+                            <input onChange={() => handleChange("name")} ref={nameRef} type="text" placeholder="Name" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373] " />
                         </div>
                         {errors.name && <p className="text-sm text-red-500 text-start mt-2">{errors.name[0]}</p>}
 
                         <div className="flex items-center border-[#cfcfcf] dark:border-[#929292] border-2 rounded-md w-full h-[3.5rem] mt-4 focus-within:border-black/50 dark:focus-within:border-black/70 ">
                             <IoPersonOutline color={theme === "dark" ? "#737373" : "#9e9e9e"} size={30} className="ml-4" />
-                            <input ref={surnameRef} type="text" placeholder="Surname" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
+                            <input onChange={() => handleChange("surname")} ref={surnameRef} type="text" placeholder="Surname" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
                         </div>
                         {errors.surname && <p className="text-sm text-red-500 text-start mt-2">{errors.surname[0]}</p>}
 
                         <div className="flex items-center border-[#cfcfcf] dark:border-[#929292] border-2 rounded-md w-full h-[3.5rem] mt-4 focus-within:border-black/50 dark:focus-within:border-black/70 ">
                             <MdOutlineEmail color={theme === "dark" ? "#737373" : "#9e9e9e"} size={30} className="ml-4" />
-                            <input ref={emailRef} type="email" placeholder="Email" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
+                            <input onChange={() => handleChange("email")} ref={emailRef} type="email" placeholder="Email" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
                         </div>
 
                         {errors.email && <p className="text-sm text-red-500 text-start mt-2">{errors.email[0]}</p>}
                         <div className="flex items-center border-[#cfcfcf] dark:border-[#929292] border-2 rounded-md w-full h-[3.5rem] mt-4 focus-within:border-black/50 dark:focus-within:border-black/70 ">
                             <MdLockOutline color={theme === "dark" ? "#737373" : "#9e9e9e"} size={30} className="ml-4" />
-                            <input ref={passwordRef} type={isPasswordVisible ? "text" : "password"} placeholder="Password" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
+                            <input onChange={() => handleChange("password")} ref={passwordRef} type={isPasswordVisible ? "text" : "password"} placeholder="Password" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
 
                             {isPasswordVisible ?
                                 <FiEyeOff onClick={() => handleChangeVisible()} size={30} color={theme === "dark" ? "#737373" : "#9e9e9e"} className="mr-4 cursor-pointer hover:scale-105" />
