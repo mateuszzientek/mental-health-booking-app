@@ -14,6 +14,7 @@ export default function App() {
     const dispatch = useDispatch();
 
     const theme = useSelector((state: RootState) => state.theme.theme);
+    const user = useSelector((state: RootState) => state.user.user);
     const [userDataFetched, setUserDataFetched] = useState(false);
 
     useEffect(() => {
@@ -31,19 +32,10 @@ export default function App() {
         return () => mediaQuery.removeEventListener('change', handleChange);
     }, []);
 
-    useEffect(() => {
-        axiosClient.get('/user')
-            .then(({ data }) => {
-                dispatch(setUser(data))
-                setUserDataFetched(true);
-            }).catch(() => {
-                setUserDataFetched(true);
-            })
-    }, [])
 
     return (
         <div >
-            {userDataFetched && <RouterProvider router={router} />}
+            <RouterProvider router={router} />
         </div>
 
     );

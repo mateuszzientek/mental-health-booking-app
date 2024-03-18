@@ -38,10 +38,10 @@ class AuthController extends Controller
     {
         $credentials = $request->validated();
 
-        if (Auth::attempt($credentials)) {
+        if (!Auth::attempt($credentials)) {
             return response([
                 'message' => "Provided email address or password is incorrrect"
-            ]);
+            ], 422);
         }
 
         /** @var User $user */

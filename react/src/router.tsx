@@ -4,9 +4,9 @@ import { ReactNode } from 'react';
 import ButtonToUp from "./components/elements/ButtonToUp";
 import LoadingAnimationPage from "./components/sections/LoadingAnimationPage";
 
-import GuestLayout from "./components/Layouts/GuestLayout";
-import AuthLayout from "./components/Layouts/AuthLayout";
 
+const GuestLayout = lazy(() => import("./components/Layouts/GuestLayout"))
+const AuthLayout = lazy(() => import("./components/Layouts/AuthLayout"))
 const Contact = lazy(() => import("./views/Contact"))
 const Home = lazy(() => import("./views/Home"))
 const Footer = lazy(() => import("./components/sections/Footer"))
@@ -29,7 +29,10 @@ const router = createBrowserRouter([
         element: <Layout><Home /></Layout>
     },
     {
-        element: <GuestLayout />,
+        element:
+            <Suspense fallback={<LoadingAnimationPage />}>
+                <GuestLayout />
+            </Suspense >,
         children: [
             {
                 path: "/login",
@@ -49,7 +52,10 @@ const router = createBrowserRouter([
         ]
     },
     {
-        element: <AuthLayout />,
+        element:
+            <Suspense fallback={<LoadingAnimationPage />}>
+                <AuthLayout />
+            </Suspense >,
         children: [
             {
                 path: "/contact",

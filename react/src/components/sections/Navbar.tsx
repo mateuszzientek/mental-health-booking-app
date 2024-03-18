@@ -9,17 +9,38 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import "react-lazy-load-image-component/src/effects/blur.css";
 import HeroLink from "../elements/HeroLink";
 import SwitchDarkMode from "../elements/SwitchDarkMode";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from "../../state/store";
 import { useNavigate } from "react-router-dom";
+import axiosClient from "../../views/axios-client";
+import { setToken, setUser } from "../../state/user/userSlice";
+import CircleSvg from "../elements/CircleSvg";
+import { useState } from "react";
+
+
 
 export default function Navbar() {
 
+    const [isSubmittingLogout, setIsSubmittingLogout] = useState(false)
     const token = useSelector((state: RootState) => state.user.token)
     const user = useSelector((state: RootState) => state.user.user)
+    const dispatch = useDispatch();
 
     const theme = useSelector((state: RootState) => state.theme.theme)
     const navigate = useNavigate();
+
+    const onLogout = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        event.preventDefault()
+        setIsSubmittingLogout(true)
+        axiosClient.post("/logout")
+            .then(() => {
+                dispatch(setUser(null))
+                dispatch(setToken(null))
+            })
+            .finally(() => {
+                setIsSubmittingLogout(false)
+            })
+    }
 
     return (
         <div>
@@ -92,9 +113,27 @@ export default function Navbar() {
                                 </button>
                             </>
 
-                            : <button onClick={() => navigate("/login")} className="group w-[7rem] h-[3rem] rounded-md border-2 border-primary hover:bg-primary hover:text-white ">
-                                <p className="text-primary dark:text-white group-hover:text-white ">Logout</p>
-                            </button>}
+                            :
+                            <>
+
+                                <button
+                                    onClick={() => navigate("/profile")}
+                                    className="w-[7rem] h-[3rem] rounded-md bg-primary hover:bg-primary_darker">
+                                    <p className="text-white">My Profile</p>
+                                </button>
+
+                                <button
+                                    disabled={isSubmittingLogout}
+                                    onClick={onLogout}
+                                    className="group w-[7rem] h-[3rem] rounded-md border-2 disabled:bg-primary border-primary hover:bg-primary hover:text-white ">
+                                    <div className="flex justify-center items-center">
+                                        {isSubmittingLogout && <CircleSvg color="white" secColor="white" />}
+                                        <p className="text-primary dark:text-white group-hover:text-white ">Logout</p>
+                                    </div>
+
+                                </button>
+                            </>
+                        }
                     </div>
 
                 </div>

@@ -19,7 +19,7 @@ const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setToken: (state, action: PayloadAction<string>) => {
+        setToken: (state, action: PayloadAction<string | null>) => {
             state.token = action.payload;
 
             if(action.payload){

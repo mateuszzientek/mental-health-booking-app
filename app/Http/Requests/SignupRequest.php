@@ -29,8 +29,16 @@ class SignupRequest extends FormRequest
             'password' => [
                 'required',
                 'confirmed',
-                Password::min(8)->letters()
+                'min:8',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'
             ]
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'password.regex' => 'The password must contain at least one uppercase letter and one digit.'
         ];
     }
 }

@@ -6,7 +6,6 @@ export default function GuestLayout() {
 
     const token = useSelector((state: RootState) => state.user.token)
 
-
     if (token) {
         return <Navigate to="/" />
     }

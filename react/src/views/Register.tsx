@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
 import axiosClient from "./axios-client";
 import { setToken, setUser } from "../state/user/userSlice";
+import CircleSvg from "../components/elements/CircleSvg";
+
 
 interface ServerErrors {
     [key: string]: string[];
@@ -27,6 +29,7 @@ export default function Register() {
 
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const [isPasswordSecondVisible, setIsPasswordSecondVisible] = useState(false)
     const [errors, setErrors] = useState<ServerErrors>({})
 
@@ -48,6 +51,9 @@ export default function Register() {
             password_confirmation: passwordConfirmationRef.current?.value || ''
         }
 
+        setIsSubmitting(true)
+        setErrors({})
+
         axiosClient.post("/signup", payload)
             .then(({ data }) => {
                 console.log(data)
@@ -62,6 +68,8 @@ export default function Register() {
                 } else {
                     console.log(err)
                 }
+            }).finally(() => {
+                setIsSubmitting(false)
             })
     }
 
@@ -74,11 +82,6 @@ export default function Register() {
                             <img src={avatar_login} alt="Logo" className="absolute -top-20  w-[9rem] drop-shadow" />
                             <h2 className="text-4xl font-medium text-black/80  mt-14 mb-6">Create Account</h2>
                         </div>
-                        {/* {Object.keys(errors).length > 0 && <div className="w-full bg-red-500 px-6 py-4 rounded-md">
-                            {Object.keys(errors).map(key => (
-                                <p className="text-white/90 text-medium " key={key}>{errors[key][0]}</p>
-                            ))}
-                        </div>} */}
 
                         <div className="flex items-center border-[#cfcfcf] dark:border-[#929292] border-2 rounded-md w-full h-[3.5rem] mt-4 focus-within:border-black/50 dark:focus-within:border-black/70 ">
                             <IoPersonOutline color={theme === "dark" ? "#737373" : "#9e9e9e"} size={30} className="ml-4" />
@@ -111,7 +114,7 @@ export default function Register() {
                         {errors.password && <p className="text-sm text-red-500 text-start mt-2">{errors.password[0]}</p>}
                         <div className="flex items-center border-[#cfcfcf] dark:border-[#929292] border-2 rounded-md w-full h-[3.5rem] mt-4 focus-within:border-black/50 dark:focus-within:border-black/70 ">
                             <MdLockOutline color={theme === "dark" ? "#737373" : "#9e9e9e"} size={30} className="ml-4" />
-                            <input ref={passwordConfirmationRef} type={isPasswordVisible ? "text" : "password"} placeholder="Confirm Password" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
+                            <input ref={passwordConfirmationRef} type={isPasswordSecondVisible ? "text" : "password"} placeholder="Confirm Password" className="w-full text-black/80 outline-none mx-4 text-xl bg-transparent dark:placeholder-[#737373]" />
 
                             {isPasswordSecondVisible ?
                                 <FiEyeOff onClick={() => handleChangeSecondVisible()} size={30} color={theme === "dark" ? "#737373" : "#9e9e9e"} className="mr-4 cursor-pointer hover:scale-105" />
@@ -122,8 +125,15 @@ export default function Register() {
                     </div>
 
 
-                    <button type="submit" className="h-[3rem] rounded-md bg-primary px-4 mt-6 w-full hover:bg-primary_darker">
-                        <p className="text-white text-xl ">Register</p>
+                    <button
+                        disabled={isSubmitting}
+                        type="submit"
+                        className="h-[3rem] rounded-md disabled:bg-[#373737] bg-primary px-4 mt-6 w-full hover:bg-primary_darker">
+                        <div className="flex justify-center items-center">
+                            {isSubmitting && <CircleSvg color="white" secColor="white" />}
+                            <p className="text-white text-xl ">Register</p>
+                        </div>
+
                     </button>
 
                     <div className="flex justify-center items-center space-x-1 mt-3">
