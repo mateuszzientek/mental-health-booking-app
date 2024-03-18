@@ -36,6 +36,7 @@ export default function Navbar() {
             .then(() => {
                 dispatch(setUser(null))
                 dispatch(setToken(null))
+
             })
             .finally(() => {
                 setIsSubmittingLogout(false)
@@ -125,10 +126,10 @@ export default function Navbar() {
                                 <button
                                     disabled={isSubmittingLogout}
                                     onClick={onLogout}
-                                    className="group w-[7rem] h-[3rem] rounded-md border-2 disabled:bg-primary border-primary hover:bg-primary hover:text-white ">
+                                    className="group w-[7rem] h-[3rem] rounded-md border-2 disabled:bg-primary  border-primary hover:bg-primary  ">
                                     <div className="flex justify-center items-center">
                                         {isSubmittingLogout && <CircleSvg color="white" secColor="white" />}
-                                        <p className="text-primary dark:text-white group-hover:text-white ">Logout</p>
+                                        <p className={` dark:text-white ${isSubmittingLogout ? "text-white" : "text-primary group-hover:text-white"} `}>Logout</p>
                                     </div>
 
                                 </button>

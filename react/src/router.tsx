@@ -23,6 +23,8 @@ const Layout = ({ children }: { children: ReactNode }) => (
     </Suspense>
 );
 
+
+
 const router = createBrowserRouter([
     {
         path: "/",

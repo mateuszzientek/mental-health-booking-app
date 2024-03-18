@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { RouterProvider } from 'react-router-dom';
+import { RouterProvider, useLocation } from 'react-router-dom';
 import router from './router';
 import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,9 +9,11 @@ import axiosClient from './views/axios-client';
 import { setUser } from './state/user/userSlice';
 
 
+
 export default function App() {
 
     const dispatch = useDispatch();
+
 
     const theme = useSelector((state: RootState) => state.theme.theme);
     const user = useSelector((state: RootState) => state.user.user);
@@ -33,11 +35,11 @@ export default function App() {
     }, []);
 
 
+
     return (
         <div >
             <RouterProvider router={router} />
         </div>
-
     );
 }
 

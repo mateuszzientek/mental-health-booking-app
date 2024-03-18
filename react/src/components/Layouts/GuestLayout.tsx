@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { RootState } from "../../state/store";
+import { useEffect } from "react";
 
 export default function GuestLayout() {
 

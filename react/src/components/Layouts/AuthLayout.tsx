@@ -1,61 +1,49 @@
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
 import axiosClient from "../../views/axios-client";
 import { setUser } from "../../state/user/userSlice";
 import { RootState } from "../../state/store";
 import LoadingAnimationPage from "../sections/LoadingAnimationPage";
 import Navbar from "../sections/Navbar";
-
+import { Outlet, useNavigate } from "react-router-dom";
 
 export default function AuthLayout() {
-
-
     const dispatch = useDispatch();
-    const user = useSelector((state: RootState) => state.user.user)
-    const token = useSelector((state: RootState) => state.user.token)
+    const user = useSelector((state: RootState) => state.user.user);
+    const token = useSelector((state: RootState) => state.user.token);
+    const [isDataFetched, setIsDataFetched] = useState(false);
+    const navigate = useNavigate();
 
-    const [isDataFatched, setIsDataFatched] = useState(false)
-
-    if (!token) {
-        return <Navigate to="/login" />
-    }
+    useEffect(() => {
+        if (!token) {
+            navigate("/login");
+        }
+    }, [token, navigate]);
 
     useEffect(() => {
 
-        if (!user) {
+        if (!user && token) {
             axiosClient.get('/user')
                 .then(({ data }) => {
-                    dispatch(setUser(data))
+                    dispatch(setUser(data));
                 })
                 .finally(() => {
-                    setIsDataFatched(true)
-                })
+                    setIsDataFetched(true);
+                });
         } else {
-            setIsDataFatched(true)
+            setIsDataFetched(true);
         }
-
-    }, [])
-
+    }, [user, token, dispatch]);
 
 
+    if (!isDataFetched) {
+        return <LoadingAnimationPage />;
+    }
 
     return (
         <>
-            {!isDataFatched
-                ?
-                <LoadingAnimationPage />
-                :
-                <div>
-                    <Navbar />
-                    <Outlet />
-                </div>
-            }
-
-
-
-
+            <Navbar />
+            <Outlet />
         </>
-
     );
 }
