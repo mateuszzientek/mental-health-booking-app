@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Password_reset_token extends Model
 {
@@ -14,6 +15,6 @@ class Password_reset_token extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'email', 'token', 'created_at'
+        'email', 'token', 'created_at, expiration_date'
     ];
 }

@@ -16,7 +16,6 @@ const initialState: ThemeState = {
         state.theme = action.payload;
         localStorage.setItem('theme', action.payload);
       },
-      
     },
   });
 

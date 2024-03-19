@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser, setToken } from "../state/user/userSlice";
 import CircleSvg from "../components/elements/CircleSvg";
 import { IoMdClose } from "react-icons/io";
+import { setMessage } from "../state/notification/notificationSlice";
 
 
 interface ServerErrors {
@@ -20,6 +21,7 @@ export default function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const theme = useSelector((state: RootState) => state.theme.theme)
+
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [showForgotPassword, setShowForgotPassword] = useState(false)
@@ -52,7 +54,8 @@ export default function Login() {
         console.log(payload)
         axiosClient.post("/forgot-password", payload)
             .then(({ data }) => {
-                console.log(data)
+
+                dispatch(setMessage("Wysłano link resetujący!"))
 
             }).catch(err => {
                 const response = err.response
@@ -62,6 +65,10 @@ export default function Login() {
                     setErrorsReset({
                         email: [response.data.message]
                     })
+                } else if (response && response.status === 500) {
+                    alert("An error occurred while processing your request. Please try again later.")
+                } else {
+                    console.log(response.data)
                 }
             })
     }
@@ -126,7 +133,7 @@ export default function Login() {
                                 <p className="text-text_80 text-3xl text-center">Reset Your Password</p>
                                 <p className="text-text_60 text-xl   text-center mt-6">Enter the email address to which we will send the password reset link.</p>
 
-                                <input ref={emailResetRef} type="email" placeholder="Email*" className="mt-6 w-full text-black/80 outline-none h-[3rem] text-lg px-4 bg-transparent focus-within:bg-[#d4d4d4]  rounded-md bg-[#e9e9e9]" />
+                                <input ref={emailResetRef} type="email" placeholder="Email*" className="mt-6 w-full text-black/80 bg- outline-none h-[3rem] text-lg px-4 bg-[#e9e9e9]  focus-within:bg-[#d4d4d4]  rounded-md " />
                                 {errorsReset.email && <p className="text-sm text-red-500 text-start mt-2">{errorsReset.email[0]}</p>}
                                 <button
                                     type="submit"

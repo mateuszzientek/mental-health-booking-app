@@ -7,6 +7,7 @@ import { setTheme } from './state/theme/themeSlice';
 import { RootState } from './state/store';
 import axiosClient from './views/axios-client';
 import { setUser } from './state/user/userSlice';
+import Notification from './components/elements/Notification';
 
 
 
@@ -37,7 +38,9 @@ export default function App() {
 
 
     return (
+
         <div >
+            <Notification />
             <RouterProvider router={router} />
         </div>
     );

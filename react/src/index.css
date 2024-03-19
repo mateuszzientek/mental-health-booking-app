@@ -77,3 +77,19 @@ body {
 .animate-fade-in {
     animation: fade-in 0.9s ease-out;
 }
+
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(200%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.animation-left-slide {
+    animation: slideInFromRight 0.8s ease-out;
+    /* Ustawienie animacji */
+}
