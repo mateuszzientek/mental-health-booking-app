@@ -28,7 +28,7 @@
                                         "Good day, if the request is coming from you to reset your old password and set
                                         a new one, please use the button below:
                                     </p>
-                                    <a href="http://localhost:3000/resetPassword/{{ $token }}"
+                                    <a href="{{ $app_url }}/resetPassword/{{ $token }}"
                                         style="background:#449c6f;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reset
                                         Password
                                     </a>

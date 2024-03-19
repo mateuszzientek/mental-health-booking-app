@@ -24,6 +24,7 @@ export default function Login() {
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [isSubmittingResetPassword, setIsSubmittingResetPassword] = useState(false)
     const [showForgotPassword, setShowForgotPassword] = useState(false)
     const [errors, setErrors] = useState<ServerErrors>({})
     const [errorsReset, setErrorsReset] = useState<ServerErrors>({})
@@ -50,12 +51,17 @@ export default function Login() {
         const payload = {
             emailReset: emailResetRef.current?.value || ''
         }
+
+        setIsSubmittingResetPassword(true)
+
         setErrorsReset({})
+
         console.log(payload)
         axiosClient.post("/forgot-password", payload)
             .then(({ data }) => {
 
                 dispatch(setMessage("Wysłano link resetujący!"))
+                setShowForgotPassword(false)
 
             }).catch(err => {
                 const response = err.response
@@ -70,6 +76,9 @@ export default function Login() {
                 } else {
                     console.log(response.data)
                 }
+            }).finally(() => {
+                setIsSubmittingResetPassword(false)
+
             })
     }
 
@@ -112,6 +121,7 @@ export default function Login() {
                 }
             }).finally(() => {
                 setIsSubmitting(false)
+
             })
 
 
@@ -136,9 +146,12 @@ export default function Login() {
                                 <input ref={emailResetRef} type="email" placeholder="Email*" className="mt-6 w-full text-black/80 bg- outline-none h-[3rem] text-lg px-4 bg-[#e9e9e9]  focus-within:bg-[#d4d4d4]  rounded-md " />
                                 {errorsReset.email && <p className="text-sm text-red-500 text-start mt-2">{errorsReset.email[0]}</p>}
                                 <button
+                                    disabled={isSubmittingResetPassword}
                                     type="submit"
-                                    className="h-[3rem] rounded-md bg-primary disabled:bg-[#373737] px-4 mt-6 w-full hover:bg-primary_darker">
+                                    className="h-[3rem] rounded-md bg-primary disabled:bg-[#373737]  dark:disabled:bg-[#0c0c0c] px-4 mt-6 w-full hover:bg-primary_darker">
                                     <div className="flex justify-center items-center">
+
+                                        {isSubmittingResetPassword && <CircleSvg color="white" secColor="white" />}
                                         <p className="text-white text-xl ">Send Link</p>
                                     </div>
                                 </button>
@@ -183,7 +196,7 @@ export default function Login() {
                     <button
                         disabled={isSubmitting}
                         type="submit"
-                        className="h-[3rem] rounded-md bg-primary disabled:bg-[#373737] px-4 mt-6 w-full hover:bg-primary_darker">
+                        className="h-[3rem] rounded-md bg-primary disabled:bg-[#373737] dark:disabled:bg-[#0c0c0c] px-4 mt-6 w-full hover:bg-primary_darker">
 
                         <div className="flex justify-center items-center">
                             {isSubmitting && <CircleSvg color="white" secColor="white" />}

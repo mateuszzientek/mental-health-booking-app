@@ -8,6 +8,7 @@ use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 use App\Models\Password_reset_token;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Config;
 use App\Http\Requests\ForgotPasswordRequest;
 
 class ForgetPassword extends Controller
@@ -30,7 +31,7 @@ class ForgetPassword extends Controller
 
             $email = $emailReset['emailReset'];
 
-            Mail::send("emails.forget-password", ['token' => $token], function ($message) use ($email) {
+            Mail::send("emails.forget-password", ['token' => $token, 'app_url' => env('APP_CLIENT_URL')], function ($message) use ($email) {
                 $message->to($email);
                 $message->subject("Reset Password");
             });

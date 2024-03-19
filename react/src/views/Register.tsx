@@ -136,7 +136,7 @@ export default function Register() {
                     <button
                         disabled={isSubmitting}
                         type="submit"
-                        className="h-[3rem] rounded-md disabled:bg-[#373737] bg-primary px-4 mt-6 w-full hover:bg-primary_darker">
+                        className="h-[3rem] rounded-md disabled:bg-[#373737] dark:disabled:bg-[#0c0c0c] bg-primary px-4 mt-6 w-full hover:bg-primary_darker">
                         <div className="flex justify-center items-center">
                             {isSubmitting && <CircleSvg color="white" secColor="white" />}
                             <p className="text-white text-xl ">Register</p>
