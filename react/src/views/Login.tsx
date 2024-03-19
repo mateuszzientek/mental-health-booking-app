@@ -60,7 +60,7 @@ export default function Login() {
         axiosClient.post("/forgot-password", payload)
             .then(({ data }) => {
 
-                dispatch(setMessage("Wysłano link resetujący!"))
+                dispatch(setMessage("Reset link sent!"))
                 setShowForgotPassword(false)
 
             }).catch(err => {
@@ -143,7 +143,7 @@ export default function Login() {
                                 <p className="text-text_80 text-3xl text-center">Reset Your Password</p>
                                 <p className="text-text_60 text-xl   text-center mt-6">Enter the email address to which we will send the password reset link.</p>
 
-                                <input ref={emailResetRef} type="email" placeholder="Email*" className="mt-6 w-full text-black/80 bg- outline-none h-[3rem] text-lg px-4 bg-[#e9e9e9]  focus-within:bg-[#d4d4d4]  rounded-md " />
+                                <input onChange={() => setErrorsReset({})} ref={emailResetRef} type="email" placeholder="Email*" className="mt-6 w-full text-black/80 bg- outline-none h-[3rem] text-lg px-4 bg-[#e9e9e9]  focus-within:bg-[#d4d4d4]  rounded-md " />
                                 {errorsReset.email && <p className="text-sm text-red-500 text-start mt-2">{errorsReset.email[0]}</p>}
                                 <button
                                     disabled={isSubmittingResetPassword}
