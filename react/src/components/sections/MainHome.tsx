@@ -10,7 +10,7 @@ import Navbar from "./Navbar";
 export default function MainHome() {
     return (
         <div className="bg-background ">
-            <Navbar />
+            <Navbar transparent={false} />
             <div className="relative flex justify-between h-[43rem] max-w-[89rem] mx-auto  ">
 
                 <div className="mt-20">

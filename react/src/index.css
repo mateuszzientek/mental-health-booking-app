@@ -93,3 +93,12 @@ body {
     animation: slideInFromRight 0.8s ease-out;
     /* Ustawienie animacji */
 }
+
+.background-contact {
+    background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
+
+}
+
+textarea {
+    resize: none;
+}

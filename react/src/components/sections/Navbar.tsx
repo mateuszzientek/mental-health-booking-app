@@ -17,9 +17,11 @@ import { setToken, setUser } from "../../state/user/userSlice";
 import CircleSvg from "../elements/CircleSvg";
 import { useState } from "react";
 
+interface NavbarProps {
+    transparent: boolean
+}
 
-
-export default function Navbar() {
+export default function Navbar(props: NavbarProps) {
 
     const [isSubmittingLogout, setIsSubmittingLogout] = useState(false)
     const token = useSelector((state: RootState) => state.user.token)
@@ -80,7 +82,7 @@ export default function Navbar() {
 
             </div>
 
-            <div className="flex h-28 shadow-md items-center bg-background z-40">
+            <div className={`flex h-28 ${props.transparent ? "bg-transparent" : "bg-background shadow-md"} items-center z-40`}>
                 <div className=' flex items-center justify-between h-32 w-[89rem] mx-auto '>
 
                     <div onClick={() => navigate("/")}>

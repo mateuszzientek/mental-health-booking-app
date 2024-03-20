@@ -5,10 +5,14 @@ import { CiFacebook, CiInstagram, CiTwitter } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 import HeroLinkFooter from '../elements/HeroLinkFooter';
 
-export default function Footer() {
+interface FooterProps {
+    width: string
+}
+
+export default function Footer(props: FooterProps) {
     return (
         <div className=" bg-background_secondary">
-            <div className="py-12 flex mx-auto  justify-between w-[75rem]  bg-background_secondary">
+            <div className={`py-12 flex mx-auto  justify-between ${props.width} bg-background_secondary`}>
 
                 <div>
                     <LazyLoadImage

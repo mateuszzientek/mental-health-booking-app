@@ -20,7 +20,6 @@ const Layout = ({ children }: { children: ReactNode }) => (
     <Suspense fallback={<LoadingAnimationPage />}>
         <ButtonToUp />
         {children}
-        <Footer />
     </Suspense>
 );
 
@@ -30,6 +29,10 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <Layout><Home /></Layout>
+    },
+    {
+        path: "/contact",
+        element: <Layout><Contact /></Layout>
     },
     {
         element:
@@ -68,11 +71,6 @@ const router = createBrowserRouter([
             </Suspense >,
         children: [
             {
-                path: "/contact",
-                element:
-                    <Suspense fallback={<LoadingAnimationPage />}>
-                        <Contact />
-                    </Suspense>
             },
         ]
     },
