@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmailQuestionController;
 use App\Http\Controllers\ForgetPassword;
 
 /*
@@ -30,3 +31,4 @@ Route::post("/login", [AuthController::class, 'login']);
 Route::post("/forgot-password", [ForgetPassword::class, 'forgetPassword']);
 Route::post("reset-password", [ForgetPassword::class, 'resetPassword']);
 Route::post("check-expirationTime", [ForgetPassword::class, 'checkExpirationTime']);
+Route::post("emailQuestion", [EmailQuestionController::class, 'sendEmail']);

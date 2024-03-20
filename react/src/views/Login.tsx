@@ -56,7 +56,6 @@ export default function Login() {
 
         setErrorsReset({})
 
-        console.log(payload)
         axiosClient.post("/forgot-password", payload)
             .then(({ data }) => {
 
