@@ -18,14 +18,12 @@ body {
 }
 
 .drop-shadow {
-    filter: drop-shadow(1px 1px 3px #979797)
+    filter: drop-shadow(1px 1px 3px #979797);
 }
-
 
 .swiper-pagination-bullet-active {
     background-color: #449c6f !important;
 }
-
 
 @media (min-width: 1300px) {
     .swiper-slide-active {
@@ -43,7 +41,7 @@ body {
 }
 
 .dark {
-    --background: 48, 48, 48;
+    --background: 24, 24, 24;
     --background_secondary: 180, 191, 180;
     --text_100: 255, 255, 255;
     --text_60: 170, 170, 170;
@@ -73,11 +71,9 @@ body {
     }
 }
 
-
 .animate-fade-in {
     animation: fade-in 0.9s ease-out;
 }
-
 
 @keyframes slideInFromRight {
     0% {
@@ -96,9 +92,35 @@ body {
 
 .background-contact {
     background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
-
 }
 
 textarea {
     resize: none;
+}
+
+.background-specialists {
+    background-image: url("./assets/images/background_photo.jpg");
+    background-size: cover; /* Dopasowuje obraz tła do rozmiaru kontenera */
+    background-position: center; /* Ustawia pozycję obrazu tła na środku kontenera */
+    position: relative; /* Ustawia pozycję względną, aby skorzystać z pozycjonowania absolutnego dla zawartości */
+    overflow: hidden; /* Ukrywa ewentualne przepełnienie treści, gdy obraz tła nie mieści się w całości */
+}
+
+.background-specialists::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px); /* Efekt rozmycia tła */
+    background-color: var(--bg-color);
+}
+
+.no-blur {
+    backdrop-filter: none;
+}
+
+.blur-edge {
+    box-shadow: 0 0 30px 10px rgba(100, 100, 100, 0.5); /* Rozmycie krawędzi */
 }
