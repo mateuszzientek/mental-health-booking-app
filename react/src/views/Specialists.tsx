@@ -22,14 +22,18 @@ export default function Specialists() {
                     <h2 className="text-5xl text-text_80 font-semibold z-20 mt-20">
                         Meet Our Specialist!
                     </h2>
-                    <p className="text-xl text-text_60 z-20 text-center mt-6 ">
-                        DFDSAF FDSAF D FDS FDSAF DS FDSA FADS
+                    <p className="text-xl text-text_80 z-20 text-center mt-6 w-[35rem]">
+                        Meet our diverse team of psychologists, each with unique
+                        expertise and approaches tailored to your needs.
+                        Discover the perfect match for you.
                     </p>
                 </div>
-                <div className="flex  items-center justify-between w-[89rem] mx-auto mt-24">
-                    {specialist.map((specialist, key) => (
-                        <CardSpecialist key={key} data={specialist} />
-                    ))}
+                <div className="flex items-center justify-center mt-16">
+                    <div className="grid grid-cols-1 gap-14 md:grid-cols-2 lg:grid-cols-4">
+                        {specialist.map((specialist, key) => (
+                            <CardSpecialist key={key} data={specialist} />
+                        ))}
+                    </div>
                 </div>
             </div>
 

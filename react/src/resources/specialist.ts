@@ -1,24 +1,29 @@
 interface SpecialistProps {
     name: string;
     text: string;
+    avatar: string;
 }
 
 const specialist: SpecialistProps[] = [
     {
         name: "Olivier Smith",
-        text: "Jestem psychologiem z pasją do pomagania innym odkryć ich wewnętrzną siłę i pokonać życiowe wyzwania.",
+        text: "Passionate psychologist empowering others to overcome challenges.",
+        avatar: "specialist1",
     },
     {
         name: "Emma Williams",
-        text: "Jestem doświadczonym psychiatrą z zaangażowaniem w zdrowie psychiczne moich pacjentów.",
+        text: "Experienced psychiatrist dedicated to patient well-being.",
+        avatar: "specialist3",
     },
     {
         name: "Ethan Johanson",
-        text: "Jestem psychologiem specjalizujący się w terapii poznawczo-behawioralnej. Dążę do tworzenia bezpiecznej przestrzeni, w której możesz dzielić się swoimi myślami i uczuciami.",
+        text: "Cognitive-behavioral therapist creating a safe space for growth.",
+        avatar: "specialist2",
     },
     {
         name: "Sophia Brown",
-        text: "Jestem doświadczoną psychoterapeutka, której pasją jest pomaganie ludziom w przezwyciężaniu trudności życiowych i osiąganiu pełni swojego potencjału.",
+        text: "Psychotherapist guiding individuals to achieve their potential.",
+        avatar: "specialist4",
     },
 ];
 

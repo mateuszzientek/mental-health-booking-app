@@ -1,8 +1,8 @@
 import SpecialistCard from "../elements/SpecialistCard";
-import specialist1 from "../../assets/images/specialist1.png"
-import specialist2 from "../../assets/images/specialist2.png"
-import specialist3 from "../../assets/images/specialist3.png"
-import specialist4 from "../../assets/images/specialist4.png"
+import specialist1 from "../../assets/images/specialists/specialist1.png";
+import specialist2 from "../../assets/images/specialists/specialist2.png";
+import specialist3 from "../../assets/images/specialists/specialist3.png";
+import specialist4 from "../../assets/images/specialists/specialist4.png";
 
 export default function SpecialistSection() {
     return (
@@ -12,15 +12,36 @@ export default function SpecialistSection() {
                     <p className="text-primary font-medium">Team members</p>
                 </div>
 
-                <h2 className="text-4xl font-bold text-text_80 pb-2 mt-2 ">Our Expert Specialist</h2>
+                <h2 className="text-4xl font-bold text-text_80 pb-2 mt-2 ">
+                    Our Expert Specialist
+                </h2>
 
                 <div className="flex justify-between items-center mt-20">
-                    <SpecialistCard name="Oliver Smith" specialization="Family/Marriage Psychology" img={specialist1} width="w-[14rem]" />
-                    <SpecialistCard name="Emma Williams" specialization="Trauma Therapy" img={specialist3} width="w-[12.5rem]" />
-                    <SpecialistCard name="Ethan Johnson" specialization="Stress and Mental Health" img={specialist2} width="w-[13rem]" />
-                    <SpecialistCard name="Sophia Brown" specialization="Public Health Psychology" img={specialist4} width="w-[13.5rem]" />
+                    <SpecialistCard
+                        name="Oliver Smith"
+                        specialization="Family/Marriage Psychology"
+                        img={specialist1}
+                        width="w-[14rem]"
+                    />
+                    <SpecialistCard
+                        name="Emma Williams"
+                        specialization="Trauma Therapy"
+                        img={specialist3}
+                        width="w-[12.5rem]"
+                    />
+                    <SpecialistCard
+                        name="Ethan Johnson"
+                        specialization="Stress and Mental Health"
+                        img={specialist2}
+                        width="w-[13rem]"
+                    />
+                    <SpecialistCard
+                        name="Sophia Brown"
+                        specialization="Public Health Psychology"
+                        img={specialist4}
+                        width="w-[13.5rem]"
+                    />
                 </div>
-
             </div>
         </div>
     );
