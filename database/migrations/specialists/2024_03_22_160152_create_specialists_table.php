@@ -23,7 +23,7 @@ return new class extends Migration
             $table->json('specializations');
             $table->json('languages');
             $table->string('experience');
-            $table->timestamps(); // Dodaję znaczniki czasowe, abyś mógł śledzić czas utworzenia i aktualizacji rekordów.
+            $table->timestamps(); 
         });
         
     }
