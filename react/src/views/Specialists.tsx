@@ -1,10 +1,8 @@
 import Navbar from "../components/sections/Navbar";
 import Footer from "../components/sections/Footer";
 import CardSpecialist from "../components/elements/CardSpecialist";
-import background_photo from "../assets/images/background_photo.jpg";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/store";
-import specialist from "../resources/specialist";
 import axiosClient from "./axios-client";
 import { useEffect, useState } from "react";
 import LoadingAnimationPage from "../components/sections/LoadingAnimationPage";
@@ -62,6 +60,7 @@ export default function Specialists() {
                                 {specialists.map((specialist) => (
                                     <CardSpecialist
                                         key={specialist.id}
+                                        id={specialist.id}
                                         name={specialist.name}
                                         description={
                                             specialist.descriptionShort

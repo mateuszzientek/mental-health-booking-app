@@ -34,3 +34,4 @@ Route::post("/reset-password", [ForgetPassword::class, 'resetPassword']);
 Route::post("check-expirationTime", [ForgetPassword::class, 'checkExpirationTime']);
 Route::post("/emailQuestion", [EmailQuestionController::class, 'sendEmail']);
 Route::get("/getSpecialists", [SpecialistController::class, 'getSpecialist']);
+Route::get('/getSingleSpecialist/{id}', [SpecialistController::class, 'getSingleSpecialist']);

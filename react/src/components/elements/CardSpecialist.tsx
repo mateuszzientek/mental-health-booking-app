@@ -1,13 +1,17 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
+import { useNavigate } from "react-router-dom";
 
 interface CardSpecialistProps {
     name: string;
     description: string;
     avatar: string;
+    id: number;
 }
 
 export default function CardSpecialist(props: CardSpecialistProps) {
+    const navigate = useNavigate();
+
     function getImageUrl(name: string) {
         return new URL(
             `../../assets/images/specialists/${name}.png`,
@@ -15,8 +19,15 @@ export default function CardSpecialist(props: CardSpecialistProps) {
         ).href;
     }
 
+    const handleClick = (id: number) => {
+        navigate(`/specialist/${id}`);
+    };
+
     return (
-        <div className=" relative group items-center justify-center  overflow-hidden cursor-pointer hover:shadow-xl hover:shadow-black/30 transition-shadow rounded-xl blur-edge">
+        <div
+            onClick={() => handleClick(props.id)}
+            className=" relative group items-center justify-center  overflow-hidden cursor-pointer hover:shadow-xl hover:shadow-black/30 transition-shadow rounded-xl blur-edge"
+        >
             <div className="h-[22rem] w-[16rem] bg-secondary background-contact">
                 <img
                     className="absolute bottom-0 h-[90%] w-full group-hover:rotate-3 group-hover:scale-110 transition-transform duration-500"

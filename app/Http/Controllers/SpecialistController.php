@@ -22,4 +22,20 @@ class SpecialistController extends Controller
         }
        
     }
+
+    public function getSingleSpecialist($id){
+
+       if(!is_numeric($id)){
+        return response()->json(['redirectMessage' => 'Id is not an number'], 200);
+       }
+
+        $specialist = Specialist::find($id);
+
+        if(!$specialist){
+           return response()->json(['redirectMessage' => 'Specialist not found'], 200);
+        }
+
+        return response()->json($specialist);
+
+    }
 }

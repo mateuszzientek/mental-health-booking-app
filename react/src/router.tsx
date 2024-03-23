@@ -14,6 +14,7 @@ const Login = lazy(() => import("./views/Login"));
 const Register = lazy(() => import("./views/Register"));
 const ResetPassword = lazy(() => import("./views/ResetPassword"));
 const Specialists = lazy(() => import("./views/Specialists"));
+const SpecialistSingle = lazy(() => import("./views/SpecialistSingle"));
 
 const Layout = ({ children }: { children: ReactNode }) => (
     <Suspense fallback={<LoadingAnimationPage />}>
@@ -37,6 +38,14 @@ const router = createBrowserRouter([
             <Layout>
                 <Specialists />
             </Layout>
+        ),
+    },
+    {
+        path: "/specialist/:id",
+        element: (
+            <Suspense fallback={<LoadingAnimationPage />}>
+                <SpecialistSingle />
+            </Suspense>
         ),
     },
     {
