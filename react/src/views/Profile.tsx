@@ -4,13 +4,25 @@ import { IoLockClosedOutline } from "react-icons/io5";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { useState } from "react";
 import Footer from "../components/sections/Footer";
+import { RootState } from "../state/store";
+import { useSelector } from "react-redux";
 
 export default function Profile() {
     const [selectedOption, setSelectedOption] = useState("account");
+
+    const theme = useSelector((state: RootState) => state.theme.theme);
+    const user = useSelector((state: RootState) => state.user.user);
     const days = [
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
         21, 22, 23, 24, 25, 26, 26, 27, 28, 29, 30, 31,
     ];
+
+    const years = [];
+    for (let i = 2024; i >= 1940; i--) {
+        years.push(i);
+    }
+
+    const genders = ["man", "woman", "other"];
 
     const months = [
         { name: "January", number: 1 },
@@ -33,17 +45,21 @@ export default function Profile() {
 
     return (
         <>
-            <div className="w-screen min-h-screen bg-[hsl(0,0%,95%)]">
+            <div className="w-screen min-h-screen bg-[hsl(0,0%,95%)] dark:bg-[#181818]">
                 <Navbar transparent={false} />
                 <div className="pt-14 pb-20 w-[89rem] mx-auto">
                     <h2 className="text-4xl font-bold pb-2 mt-2  text-text_80">
-                        Account Settings
+                        Hello, {user?.name}
                     </h2>
                     <p className="text-xl text-text_60 mt-4">
-                        Change your profile and account settings
+                        Explore appointments and update profile settings
                     </p>
 
-                    <div className="flex bg-white shadow w-full h-[40rem] px-10  rounded-md mt-14">
+                    <div
+                        className={`flex bg-white dark:bg-[#2d2d2d] ${
+                            theme === "light" && "shadow "
+                        }w-full h-[40rem] px-10  rounded-md mt-14`}
+                    >
                         <div className="w-[25%] border-r-2 border-black/10 space-y-12">
                             <div
                                 onClick={() => selectOption("account")}
@@ -54,14 +70,16 @@ export default function Profile() {
                                     color={
                                         selectedOption === "account"
                                             ? "#449c6f"
-                                            : "#666666"
+                                            : theme === "dark"
+                                            ? "#d1d1d1"
+                                            : "#4a4a4a"
                                     }
                                 />
                                 <p
-                                    className={`text-2xl   ${
+                                    className={`text-2xl text-text_80  ${
                                         selectedOption === "account"
-                                            ? "text-black/80 font-bold"
-                                            : "text-black/70"
+                                            ? "font-bold"
+                                            : ""
                                     } `}
                                 >
                                     Account
@@ -76,14 +94,16 @@ export default function Profile() {
                                     color={
                                         selectedOption === "questions"
                                             ? "#449c6f"
-                                            : "#666666"
+                                            : theme === "dark"
+                                            ? "#d1d1d1"
+                                            : "#4a4a4a"
                                     }
                                 />
                                 <p
-                                    className={`text-2xl   ${
+                                    className={`text-2xl text-text_80  ${
                                         selectedOption === "questions"
-                                            ? "text-black/80 font-bold"
-                                            : "text-black/70"
+                                            ? "font-bold"
+                                            : ""
                                     } `}
                                 >
                                     Questions
@@ -98,14 +118,16 @@ export default function Profile() {
                                     color={
                                         selectedOption === "password"
                                             ? "#449c6f"
-                                            : "#666666"
+                                            : theme === "dark"
+                                            ? "#d1d1d1"
+                                            : "#4a4a4a"
                                     }
                                 />
                                 <p
-                                    className={`text-2xl   ${
+                                    className={`text-2xl text-text_80  ${
                                         selectedOption === "password"
-                                            ? "text-black/80 font-bold"
-                                            : "text-black/70"
+                                            ? "font-bold"
+                                            : ""
                                     } `}
                                 >
                                     {" "}
@@ -130,13 +152,13 @@ export default function Profile() {
                                         <p className="text-lg text-text_60 font-medium">
                                             FIRST NAME
                                         </p>
-                                        <input className="h-[3.5rem] text-xl px-4 w-[24rem] rounded-lg border-2 border-black/20 outline-none" />
+                                        <input className="text-text_80 bg-transparent h-[3.5rem] text-xl px-4 w-[24rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none" />
                                     </div>
                                     <div className="space-y-3">
                                         <p className="text-lg text-text_60 font-medium">
                                             LAST NAME
                                         </p>
-                                        <input className="h-[3.5rem] text-xl px-4 w-[24rem] rounded-lg border-2 border-black/20 outline-none" />
+                                        <input className="text-text_80 bg-transparent h-[3.5rem] text-xl px-4 w-[24rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none" />
                                     </div>
                                 </div>
                                 <div className="flex items-center mt-10 space-x-10">
@@ -144,16 +166,13 @@ export default function Profile() {
                                         <p className="text-lg text-text_60 font-medium">
                                             EMAIL
                                         </p>
-                                        <input
-                                            type="email"
-                                            className="h-[3.5rem] text-xl px-4 w-[24rem] rounded-lg border-2 border-black/20 outline-none"
-                                        />
+                                        <div className="h-[3.5rem] text-xl px-4 w-[24rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none" />
                                     </div>
                                     <div className="space-y-3">
                                         <p className="text-lg text-text_60 font-medium">
                                             PHONE NUMBER
                                         </p>
-                                        <input className="h-[3.5rem] text-xl px-4 w-[24rem] rounded-lg border-2 border-black/20 outline-none" />
+                                        <input className="text-text_80 bg-transparent h-[3.5rem] text-xl px-4 w-[24rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none" />
                                     </div>
                                 </div>
                                 <div className="flex items-end mt-10 space-x-4">
@@ -161,33 +180,62 @@ export default function Profile() {
                                         <p className="text-lg text-text_60 font-medium">
                                             DATE OF BIRTH
                                         </p>
-                                        <select className="h-[3.5rem] text-xl px-4 w-[10rem] rounded-lg border-2 border-black/20 outline-none">
+                                        <select className="text-text_80 bg-transparent cursor-pointer h-[3.5rem] text-xl px-4 w-[10rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none">
                                             <option value="">Month</option>
                                             {months.map((month, index) => (
                                                 <option
                                                     key={index}
                                                     value={month.name}
+                                                    className="text-black"
                                                 >
                                                     {month.name}
                                                 </option>
                                             ))}
                                         </select>
                                     </div>
-                                    <div>
-                                        <select className="h-[3.5rem] text-xl px-4 w-[7rem] rounded-lg border-2 border-black/20 outline-none">
-                                            <option value="">Day</option>
-                                            {days.map((day, index) => (
-                                                <option key={index}>
-                                                    {day}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className="space-y-3">
+
+                                    <select className=" text-text_80 bg-transparent cursor-pointer h-[3.5rem] text-xl px-4 w-[7rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none">
+                                        <option value="">Day</option>
+                                        {days.map((day, index) => (
+                                            <option
+                                                key={index}
+                                                className="text-black"
+                                            >
+                                                {day}
+                                            </option>
+                                        ))}
+                                    </select>
+
+                                    <select className="text-text_80 bg-transparent cursor-pointer h-[3.5rem] text-xl px-4 w-[7rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none">
+                                        <option value="">Year</option>
+                                        {years.map((year, index) => (
+                                            <option
+                                                key={index}
+                                                className="text-black"
+                                            >
+                                                {year}
+                                            </option>
+                                        ))}
+                                    </select>
+
+                                    <div className="space-y-3 pl-10">
                                         <p className="text-lg text-text_60 font-medium">
                                             GENDER
                                         </p>
-                                        <input className="h-[3.5rem] text-xl px-4 w-[24rem] rounded-lg border-2 border-black/20 outline-none" />
+                                        <select className="text-text_80 bg-transparent cursor-pointer h-[3.5rem] text-xl px-4 w-[14rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none">
+                                            <option value=""></option>
+                                            {genders.map((gender, index) => (
+                                                <option
+                                                    key={index}
+                                                    className="text-black"
+                                                >
+                                                    {gender
+                                                        .charAt(0)
+                                                        .toUpperCase() +
+                                                        gender.slice(1)}
+                                                </option>
+                                            ))}
+                                        </select>
                                     </div>
                                 </div>
                             </div>
