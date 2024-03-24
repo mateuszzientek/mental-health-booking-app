@@ -1,10 +1,9 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import axiosClient from "../../views/axios-client";
 import { setUser } from "../../state/user/userSlice";
 import { RootState } from "../../state/store";
 import LoadingAnimationPage from "../sections/LoadingAnimationPage";
-import Navbar from "../sections/Navbar";
 import { Outlet, useNavigate } from "react-router-dom";
 
 export default function AuthLayout() {
@@ -21,9 +20,9 @@ export default function AuthLayout() {
     }, [token, navigate]);
 
     useEffect(() => {
-
         if (!user && token) {
-            axiosClient.get('/user')
+            axiosClient
+                .get("/user")
                 .then(({ data }) => {
                     dispatch(setUser(data));
                 })
@@ -35,14 +34,12 @@ export default function AuthLayout() {
         }
     }, [user, token, dispatch]);
 
-
     if (!isDataFetched) {
         return <LoadingAnimationPage />;
     }
 
     return (
         <>
-            <Navbar />
             <Outlet />
         </>
     );

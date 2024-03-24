@@ -118,7 +118,7 @@ export default function SpecialistSingle() {
                                 <img src={circle} className="w-[40rem]" />
                                 <img
                                     src={getImageUrl(specialist.avatar)}
-                                    className="absolute left-1/2 transform -translate-x-1/2 bottom-4 w-[28rem] h-[35rem]"
+                                    className="absolute left-1/2 transform -translate-x-1/2 bottom-[1.3rem] w-[28rem] h-[35rem]"
                                 />
                             </div>
                         </div>

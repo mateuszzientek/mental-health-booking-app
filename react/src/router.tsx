@@ -15,6 +15,7 @@ const Register = lazy(() => import("./views/Register"));
 const ResetPassword = lazy(() => import("./views/ResetPassword"));
 const Specialists = lazy(() => import("./views/Specialists"));
 const SpecialistSingle = lazy(() => import("./views/SpecialistSingle"));
+const Profile = lazy(() => import("./views/Profile"));
 
 const Layout = ({ children }: { children: ReactNode }) => (
     <Suspense fallback={<LoadingAnimationPage />}>
@@ -95,7 +96,16 @@ const router = createBrowserRouter([
                 <AuthLayout />
             </Suspense>
         ),
-        children: [{}],
+        children: [
+            {
+                path: "/profile",
+                element: (
+                    <Suspense fallback={<LoadingAnimationPage />}>
+                        <Profile />
+                    </Suspense>
+                ),
+            },
+        ],
     },
 
     {
