@@ -7,25 +7,39 @@ import { ServerErrors } from "../../resources/types";
 import { setUser } from "../../state/user/userSlice";
 import { RootState } from "../../state/store";
 
-
-interface PersonalDataSectionProps {
-    name: string | undefined;
-    surname: string | undefined;
-    email: string | undefined;
-    phoneNumber: string | undefined;
-    gender: string | undefined;
-    dateOfBirth: Date | undefined;
-}
-
-
-export default function PersonalDataSection(props: PersonalDataSectionProps) {
+export default function PersonalDataSection() {
 
     const user = useSelector((state: RootState) => state.user.user);
-    const [name, setName] = useState(props.name || "")
-    const [surname, setSurname] = useState(props.surname || "")
-    const [phoneNumber, setPhoneNumber] = useState(props.phoneNumber || "")
-    const [gender, setGender] = useState(props.gender || "")
-    const [dateOfBirth, setDateOfBirth] = useState(props.dateOfBirth || null)
+
+    const dateOfBirthYear = user?.dateOfBirth ? new Date(user?.dateOfBirth).getFullYear() : undefined
+    const dateOfBirthDay = user?.dateOfBirth ? new Date(user?.dateOfBirth).getDate() : undefined
+    const dateOfBirthMonth = user?.dateOfBirth ? (new Date(user?.dateOfBirth).getMonth() + 1).toString().padStart(2, '0') : undefined;
+
+
+    const months = [
+        { name: "January", number: "01" },
+        { name: "February", number: "02" },
+        { name: "March", number: "03" },
+        { name: "April", number: "04" },
+        { name: "May", number: "05" },
+        { name: "June", number: "06" },
+        { name: "July", number: "07" },
+        { name: "August", number: "08" },
+        { name: "September", number: "09" },
+        { name: "October", number: "10" },
+        { name: "November", number: "11" },
+        { name: "December", number: "12" },
+    ];
+
+    const dateOfBirthMonthName = dateOfBirthMonth !== undefined ? months.find(month => month.number === dateOfBirthMonth)?.name : "";
+
+    const [name, setName] = useState(user?.name || "")
+    const [surname, setSurname] = useState(user?.surname || "")
+    const [month, setMonth] = useState(dateOfBirthMonthName);
+    const [day, setDay] = useState<undefined | number>(dateOfBirthDay);
+    const [year, setYear] = useState<undefined | number>(dateOfBirthYear);
+    const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber || "")
+    const [gender, setGender] = useState(user?.gender || "")
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<ServerErrors>({});
 
@@ -43,20 +57,7 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
 
     const genders = ["man", "woman", "other"];
 
-    const months = [
-        { name: "January", number: 1 },
-        { name: "February", number: 2 },
-        { name: "March", number: 3 },
-        { name: "April", number: 4 },
-        { name: "May", number: 5 },
-        { name: "June", number: 6 },
-        { name: "July", number: 7 },
-        { name: "August", number: 8 },
-        { name: "September", number: 9 },
-        { name: "October", number: 10 },
-        { name: "November", number: 11 },
-        { name: "December", number: 12 },
-    ];
+
 
     const deleteError = (name: string) => {
         const updatedErrors = { ...errors };
@@ -65,10 +66,25 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
         setErrors(updatedErrors);
     };
 
-
-
     const changeName = (event: React.ChangeEvent<HTMLInputElement>, name: string) => {
         setName(event.target.value)
+        deleteError(name)
+    }
+
+    const changeDay = (event: React.ChangeEvent<HTMLSelectElement>, name: string) => {
+        const selectedDay = parseInt(event.target.value);
+        setDay(selectedDay)
+        deleteError(name)
+    }
+
+    const changeYear = (event: React.ChangeEvent<HTMLSelectElement>, name: string) => {
+        const selectedYear = parseInt(event.target.value);
+        setYear(selectedYear)
+        deleteError(name)
+    }
+
+    const changeMonth = (event: React.ChangeEvent<HTMLSelectElement>, name: string) => {
+        setMonth(event.target.value)
         deleteError(name)
     }
 
@@ -92,11 +108,18 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        const monthSelected = months.find(_month => _month.name === month)
+
+        const monthNumber = monthSelected?.number
+
         const payload = {
             name: name || "",
             surname: surname || "",
             gender: gender || "",
-            phoneNumber: phoneNumber || ""
+            phoneNumber: phoneNumber || "",
+            day: day,
+            month: monthNumber,
+            year: year
         }
 
         setIsSubmitting(true);
@@ -123,6 +146,7 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
                 setIsSubmitting(false);
             });
     }
+
 
     return (
         <div>
@@ -167,7 +191,7 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
                             EMAIL
                         </p>
                         <div className="flex items-center h-[3.5rem] text-xl px-4 w-[24rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none" >
-                            <p className="text-text_80 text-xl  ">{props.email}</p>
+                            <p className="text-text_80 text-xl  ">{user?.email}</p>
                         </div>
                     </div>
                     <div className="space-y-3">
@@ -196,6 +220,8 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
                         </p>
                         <div className="flex space-x-2">
                             <select
+                                value={month}
+                                onChange={(event) => changeMonth(event, "month")}
                                 className=" text-text_80 bg-transparent cursor-pointer h-[3.5rem] text-lg px-4 w-[10rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none">
                                 <option value="">Month</option>
                                 {months.map((month, index) => (
@@ -212,7 +238,10 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
 
 
 
-                            <select className=" text-text_80 bg-transparent cursor-pointer h-[3.5rem] text-lg px-4 w-[7rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none">
+                            <select
+                                value={day}
+                                onChange={(event) => changeDay(event, "day")}
+                                className=" text-text_80 bg-transparent cursor-pointer h-[3.5rem] text-lg px-4 w-[7rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none">
                                 <option value="">Day</option>
                                 {days.map((day, index) => (
                                     <option
@@ -224,7 +253,10 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
                                 ))}
                             </select>
 
-                            <select className="text-text_80 bg-transparent cursor-pointer h-[3.5rem] text-lg px-4 w-[7rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none">
+                            <select
+                                value={year}
+                                onChange={(event) => changeYear(event, "year")}
+                                className="text-text_80 bg-transparent cursor-pointer h-[3.5rem] text-lg px-4 w-[7rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none">
                                 <option value="">Year</option>
                                 {years.map((year, index) => (
                                     <option
@@ -235,7 +267,27 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
                                     </option>
                                 ))}
                             </select>
+
+
                         </div>
+                        {(
+                            errors.month ||
+                            errors.day ||
+                            errors.year
+                        ) && (
+                                <div>
+                                    {Object.keys(errors).map((key) => {
+                                        if (key === 'month' || key === 'day' || key === 'year') {
+                                            return (
+                                                <p key={key} className="text-sm text-red-500 text-start mt-2">
+                                                    {errors[key][0]}
+                                                </p>
+                                            );
+                                        }
+                                        return null;
+                                    })}
+                                </div>
+                            )}
                     </div>
                     <div className=" pl-10">
                         <p className="text-md  text-text_60 font-medium mb-3">

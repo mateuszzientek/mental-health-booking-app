@@ -20,11 +20,13 @@ class ProfileController extends Controller
 
             $userRecord = User::findOrFail($user->id);
 
+            $dateOfBirth = $data['year'] . '-' . $data['month'] . '-' . $data['day'];
 
             $userRecord->name = ucfirst(strtolower($data['name']));
             $userRecord->surname = ucfirst(strtolower($data['surname']));
             $userRecord->gender = $data['gender'];
             $userRecord->phoneNumber = $data['phoneNumber'];
+            $userRecord->dateOfBirth =  $dateOfBirth;
             $userRecord->save();
 
             $newUser = [

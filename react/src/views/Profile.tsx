@@ -32,7 +32,7 @@ export default function Profile() {
 
                     <div
                         className={`flex bg-white dark:bg-[#2d2d2d] ${theme === "light" && "shadow "
-                            }w-full h-[40rem] px-10  rounded-md mt-14`}
+                            }w-full  px-10  rounded-md mt-14`}
                     >
                         <div className="w-[25%] border-r-2 border-black/10 space-y-12">
                             <div
@@ -107,17 +107,10 @@ export default function Profile() {
                             </div>
                         </div>
 
-                        <div className="py-10 px-16">
+                        <div className=" py-10 px-16">
 
                             {selectedOption === "account" &&
-                                <PersonalDataSection
-                                    name={user?.name}
-                                    surname={user?.surname}
-                                    email={user?.email}
-                                    gender={user?.gender}
-                                    phoneNumber={user?.phoneNumber}
-                                    dateOfBirth={user?.dateOfBirth}
-                                />
+                                <PersonalDataSection />
                             }
 
                         </div>

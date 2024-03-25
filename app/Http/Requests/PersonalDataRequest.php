@@ -22,6 +22,9 @@ class PersonalDataRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'month' => 'required|string',
+            'day' => 'required|numeric',
+            'year' => 'required|numeric',
             'name' => 'required|string|alpha|max:55',
             'surname' => 'required|string|alpha|max:55',
             'gender' => 'required|string',
