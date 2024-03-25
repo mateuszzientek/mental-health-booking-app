@@ -3,9 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\EmailQuestionController;
 use App\Http\Controllers\ForgetPassword;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SpecialistController;
+use App\Http\Controllers\EmailQuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,4 @@ Route::post("check-expirationTime", [ForgetPassword::class, 'checkExpirationTime
 Route::post("/emailQuestion", [EmailQuestionController::class, 'sendEmail']);
 Route::get("/getSpecialists", [SpecialistController::class, 'getSpecialist']);
 Route::get('/getSingleSpecialist/{id}', [SpecialistController::class, 'getSingleSpecialist']);
+Route::post('/changePersonalData', [ProfileController::class, 'changePersonalData'])->middleware('auth:sanctum');

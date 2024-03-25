@@ -7,11 +7,8 @@ import { RootState } from "../state/store";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosClient from "./axios-client";
 import { setMessage } from "../state/notification/notificationSlice";
+import { ServerErrors } from "../resources/types";
 
-
-interface ServerErrors {
-    [key: string]: string[];
-}
 
 export default function ResetPassword() {
 

@@ -11,10 +11,9 @@ import FaqItem from "../components/elements/FaqItem";
 import faqs from "../resources/faqs";
 import axiosClient from "./axios-client";
 import { setMessage } from "../state/notification/notificationSlice";
+import { ServerErrors } from "../resources/types";
 
-interface ServerErrors {
-    [key: string]: string[];
-}
+
 
 export default function Contact() {
     const theme = useSelector((state: RootState) => state.theme.theme);

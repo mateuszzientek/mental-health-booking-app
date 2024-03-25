@@ -10,10 +10,7 @@ import { setUser, setToken } from "../state/user/userSlice";
 import CircleSvg from "../components/elements/CircleSvg";
 import { IoMdClose } from "react-icons/io";
 import { setMessage } from "../state/notification/notificationSlice";
-
-interface ServerErrors {
-    [key: string]: string[];
-}
+import { ServerErrors } from "../resources/types";
 
 export default function Login() {
     const dispatch = useDispatch();

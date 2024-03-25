@@ -9,10 +9,8 @@ import { IoPersonOutline } from "react-icons/io5";
 import axiosClient from "./axios-client";
 import { setToken, setUser } from "../state/user/userSlice";
 import CircleSvg from "../components/elements/CircleSvg";
+import { ServerErrors } from "../resources/types";
 
-interface ServerErrors {
-    [key: string]: string[];
-}
 
 export default function Register() {
     const navigate = useNavigate();

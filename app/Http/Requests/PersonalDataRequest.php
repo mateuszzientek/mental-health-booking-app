@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SignupRequest extends FormRequest
+class PersonalDataRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,20 +24,20 @@ class SignupRequest extends FormRequest
         return [
             'name' => 'required|string|alpha|max:55',
             'surname' => 'required|string|alpha|max:55',
-            'email' => 'required|email|unique:users,email',
-            'password' => [
+            'gender' => 'required|string',
+            'phoneNumber' => [
                 'required',
-                'confirmed',
-                'min:8',
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'
+                'size:9',
+                'regex:/^[0-9]*$/'
             ]
+
         ];
     }
 
     public function messages()
     {
         return [
-            'password.regex' => 'The password must contain at least one uppercase letter and one digit.'
+            'phoneNumber.regex' => 'Incorrect phone number'
         ];
     }
 }

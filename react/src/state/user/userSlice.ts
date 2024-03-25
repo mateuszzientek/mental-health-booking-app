@@ -4,6 +4,9 @@ interface UserState{
     user: null | {
         id: number,
         name: string,
+        gender: string,
+        dateOfBirth: Date,
+        phoneNumber: string,
         surname: string,
         email: string
     };

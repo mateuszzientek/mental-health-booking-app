@@ -11,3 +11,7 @@ export interface Specialist {
     quantity_appointments: number;
     specializations: string[];
 }
+
+export interface ServerErrors {
+    [key: string]: string[];
+}

@@ -17,18 +17,14 @@ class AuthController extends Controller
         /** @var \App\Models\User $user */
 
         $user = User::create([
-            'name' => $data['name'],
-            'surname' => $data['surname'],
+            'name' => ucfirst(strtolower($data['name'])),
+            'surname' => ucfirst(strtolower($data['surname'])),
             'email' => $data['email'],
             'password' => bcrypt($data['password'])
         ]);
 
         $token = $user->createToken('main')->plainTextToken;
 
-        // return response([
-        //     'user' => $user,
-        //     'token' => $token
-        // ]);
 
         return response(compact('user', 'token'));
     }
