@@ -36,4 +36,4 @@ Route::post("check-expirationTime", [ForgetPassword::class, 'checkExpirationTime
 Route::post("/emailQuestion", [EmailQuestionController::class, 'sendEmail']);
 Route::get("/getSpecialists", [SpecialistController::class, 'getSpecialist']);
 Route::get('/getSingleSpecialist/{id}', [SpecialistController::class, 'getSingleSpecialist']);
-Route::post('/changePersonalData', [ProfileController::class, 'changePersonalData'])->middleware('auth:sanctum');
+Route::put('/changePersonalData', [ProfileController::class, 'changePersonalData'])->middleware('auth:sanctum');

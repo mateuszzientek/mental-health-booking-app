@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import axiosClient from "../../views/axios-client";
 import CircleSvg from "../elements/CircleSvg";
 import { setMessage } from "../../state/notification/notificationSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ServerErrors } from "../../resources/types";
+import { setUser } from "../../state/user/userSlice";
+import { RootState } from "../../state/store";
+
 
 interface PersonalDataSectionProps {
     name: string | undefined;
@@ -17,6 +20,7 @@ interface PersonalDataSectionProps {
 
 export default function PersonalDataSection(props: PersonalDataSectionProps) {
 
+    const user = useSelector((state: RootState) => state.user.user);
     const [name, setName] = useState(props.name || "")
     const [surname, setSurname] = useState(props.surname || "")
     const [phoneNumber, setPhoneNumber] = useState(props.phoneNumber || "")
@@ -54,24 +58,34 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
         { name: "December", number: 12 },
     ];
 
+    const deleteError = (name: string) => {
+        const updatedErrors = { ...errors };
+
+        delete updatedErrors[name];
+        setErrors(updatedErrors);
+    };
 
 
 
-    const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const changeName = (event: React.ChangeEvent<HTMLInputElement>, name: string) => {
         setName(event.target.value)
+        deleteError(name)
     }
 
 
-    const changePhoneNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const changePhoneNumber = (event: React.ChangeEvent<HTMLInputElement>, name: string) => {
         setPhoneNumber(event.target.value)
+        deleteError(name)
     }
 
-    const changeSurname = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const changeSurname = (event: React.ChangeEvent<HTMLInputElement>, name: string) => {
         setSurname(event.target.value)
+        deleteError(name)
     }
 
-    const changeGender = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const changeGender = (event: React.ChangeEvent<HTMLSelectElement>, name: string) => {
         setGender(event.target.value);
+        deleteError(name)
     };
 
 
@@ -88,8 +102,11 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
         setIsSubmitting(true);
         setErrors({})
 
-        axiosClient.post("/changePersonalData", payload)
-            .then(({ data }) => {
+        axiosClient.put("/changePersonalData", payload)
+            .then((response) => {
+                const userData = response.data;
+
+                dispatch(setUser(userData))
                 dispatch(setMessage("Data has been changed"));
             })
             .catch((err) => {
@@ -119,7 +136,7 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
                             FIRST NAME
                         </p>
                         <input
-                            onChange={changeName}
+                            onChange={(event) => changeName(event, "name")}
                             value={name}
                             className="text-text_80 bg-transparent h-[3.5rem] text-xl px-4 w-[24rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none" />
                         {errors.name && (
@@ -134,7 +151,7 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
                             LAST NAME
                         </p>
                         <input
-                            onChange={changeSurname}
+                            onChange={(event) => changeSurname(event, "surname")}
                             value={surname}
                             className="text-text_80 bg-transparent h-[3.5rem] text-xl px-4 w-[24rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none" />
                         {errors.surname && (
@@ -158,7 +175,7 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
                             PHONE NUMBER
                         </p>
                         <input
-                            onChange={changePhoneNumber}
+                            onChange={(event) => changePhoneNumber(event, "phoneNumber")}
                             value={phoneNumber}
                             maxLength={9} className="text-text_80 bg-transparent h-[3.5rem] text-lg px-4 w-[24rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none" />
                         {errors.phoneNumber && (
@@ -226,7 +243,7 @@ export default function PersonalDataSection(props: PersonalDataSectionProps) {
                         </p>
                         <select
                             value={gender}
-                            onChange={changeGender}
+                            onChange={(event) => changeGender(event, "gender")}
                             className="text-text_80 bg-transparent cursor-pointer h-[3.5rem] text-lg px-4 w-[14rem] rounded-lg border-2 border-black/20 dark:border-white/30 outline-none">
                             <option value=""></option>
                             {genders.map((gender, index) => (

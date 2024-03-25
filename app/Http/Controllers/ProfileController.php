@@ -20,7 +20,23 @@ class ProfileController extends Controller
 
             $userRecord = User::findOrFail($user->id);
 
-            return response()->json($userRecord);
+
+            $userRecord->name = ucfirst(strtolower($data['name']));
+            $userRecord->surname = ucfirst(strtolower($data['surname']));
+            $userRecord->gender = $data['gender'];
+            $userRecord->phoneNumber = $data['phoneNumber'];
+            $userRecord->save();
+
+            $newUser = [
+                'id' => $userRecord->id,
+                'email' => $userRecord->email,
+                'name' => ucfirst(strtolower($data['name'])),
+                'surname' => ucfirst(strtolower($data['surname'])),
+                'gender' => $data['gender'],
+                'phoneNumber' => $data['phoneNumber'],
+            ];
+
+            return response($newUser);
         } catch (Exception $e) {
             return response()->json(['error' => 'An error occurred while processing your request.'], 500);
         }
