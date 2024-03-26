@@ -37,3 +37,4 @@ Route::post("/emailQuestion", [EmailQuestionController::class, 'sendEmail']);
 Route::get("/getSpecialists", [SpecialistController::class, 'getSpecialist']);
 Route::get('/getSingleSpecialist/{id}', [SpecialistController::class, 'getSingleSpecialist']);
 Route::put('/changePersonalData', [ProfileController::class, 'changePersonalData'])->middleware('auth:sanctum');
+Route::put('/changePassword', [ProfileController::class, 'changePassword'])->middleware('auth:sanctum');

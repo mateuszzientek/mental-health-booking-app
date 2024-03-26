@@ -7,6 +7,7 @@ import Footer from "../components/sections/Footer";
 import { RootState } from "../state/store";
 import { useSelector } from "react-redux";
 import PersonalDataSection from "../components/sections/PersonalDataSection";
+import PasswordSection from "../components/sections/PasswwordSection";
 
 export default function Profile() {
     const [selectedOption, setSelectedOption] = useState("account");
@@ -112,6 +113,11 @@ export default function Profile() {
                             {selectedOption === "account" &&
                                 <PersonalDataSection />
                             }
+
+                            {selectedOption === "password" &&
+                                <PasswordSection />
+                            }
+
 
                         </div>
                     </div>
