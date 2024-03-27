@@ -71,4 +71,25 @@ class ProfileController extends Controller
             return response()->json(['error' => 'An error occurred while processing your request.'], 500);
         }
     }
+
+    public function changeQuestions(Request $request)
+    {
+
+        try {
+            $questions = $request->input('questions');
+
+            $user = Auth::user();
+
+            $userRecord = User::findOrFail($user->id);
+
+            $userRecord->questions = $questions;
+            $userRecord->save();
+
+            $user->questions = $questions;
+
+            return response()->json(['user' => $user]);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'An error occurred while processing your request.'], 500);
+        }
+    }
 }

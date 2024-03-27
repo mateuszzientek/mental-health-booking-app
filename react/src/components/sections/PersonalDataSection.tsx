@@ -128,7 +128,6 @@ export default function PersonalDataSection() {
         axiosClient.put("/changePersonalData", payload)
             .then((response) => {
                 const userData = response.data;
-
                 dispatch(setUser(userData))
                 dispatch(setMessage("Data has been changed"));
             })

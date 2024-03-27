@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->date('dateOfBirth')->nullable();
             $table->string('password');
+            $table->json('questions')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

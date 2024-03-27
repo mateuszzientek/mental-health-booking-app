@@ -9,6 +9,9 @@ interface UserState{
         phoneNumber: string,
         surname: string,
         email: string
+        questions: {
+            [key: string]: string;
+        }
     };
     token: null | string
 }
