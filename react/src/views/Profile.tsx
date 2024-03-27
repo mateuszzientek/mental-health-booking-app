@@ -8,6 +8,7 @@ import { RootState } from "../state/store";
 import { useSelector } from "react-redux";
 import PersonalDataSection from "../components/sections/PersonalDataSection";
 import PasswordSection from "../components/sections/PasswwordSection";
+import QuestionSection from "../components/sections/QuestionsSection";
 
 export default function Profile() {
     const [selectedOption, setSelectedOption] = useState("account");
@@ -108,7 +109,7 @@ export default function Profile() {
                             </div>
                         </div>
 
-                        <div className=" py-10 px-16">
+                        <div className="w-[85%] py-10 px-16">
 
                             {selectedOption === "account" &&
                                 <PersonalDataSection />
@@ -116,6 +117,10 @@ export default function Profile() {
 
                             {selectedOption === "password" &&
                                 <PasswordSection />
+                            }
+
+                            {selectedOption === "questions" &&
+                                <QuestionSection />
                             }
 
 
