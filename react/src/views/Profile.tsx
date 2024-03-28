@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import PersonalDataSection from "../components/sections/PersonalDataSection";
 import PasswordSection from "../components/sections/PasswwordSection";
 import QuestionSection from "../components/sections/QuestionsSection";
+import { BsBookmarkCheck } from "react-icons/bs";
 
 export default function Profile() {
     const [selectedOption, setSelectedOption] = useState("account");
@@ -37,6 +38,30 @@ export default function Profile() {
                             }w-full  px-10  rounded-md mt-14`}
                     >
                         <div className="w-[25%] border-r-2 border-black/10 dark:border-white/20 space-y-12">
+                            <div
+                                onClick={() => selectOption("appointments")}
+                                className="flex items-center space-x-4 mt-10 cursor-pointer"
+                            >
+                                <BsBookmarkCheck
+                                    size={25}
+                                    color={
+                                        selectedOption === "appointments"
+                                            ? "#449c6f"
+                                            : theme === "dark"
+                                                ? "#d1d1d1"
+                                                : "#4a4a4a"
+                                    }
+                                />
+                                <p
+                                    className={`text-xl text-text_80  ${selectedOption === "appointments"
+                                        ? "font-bold"
+                                        : ""
+                                        } `}
+                                >
+                                    Appointments
+                                </p>
+                            </div>
+
                             <div
                                 onClick={() => selectOption("account")}
                                 className="flex items-center space-x-4 mt-10 cursor-pointer"
