@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ServerErrors } from "../../resources/types";
 import { setUser } from "../../state/user/userSlice";
 import { RootState } from "../../state/store";
+import { setErrorNotification } from "../../state/notification/errorNotificationSlice";
 
 export default function PersonalDataSection() {
 
@@ -138,7 +139,7 @@ export default function PersonalDataSection() {
                     console.log(response.data.errors)
                     setErrors(response.data.errors);
                 } else {
-                    console.log(response);
+                    dispatch(setErrorNotification("The error has appeared"));
                 }
             })
             .finally(() => {

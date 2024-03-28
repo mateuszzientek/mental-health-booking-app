@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import { ReactNode } from "react";
 import ButtonToUp from "./components/elements/ButtonToUp";
 import LoadingAnimationPage from "./components/sections/LoadingAnimationPage";
+import { ErrorBoundary } from "react-error-boundary";
 
 const GuestLayout = lazy(() => import("./components/Layouts/GuestLayout"));
 const AuthLayout = lazy(() => import("./components/Layouts/AuthLayout"));
@@ -53,7 +54,9 @@ const router = createBrowserRouter([
         path: "/contact",
         element: (
             <Layout>
+
                 <Contact />
+
             </Layout>
         ),
     },

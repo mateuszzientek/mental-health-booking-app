@@ -1,14 +1,18 @@
 import Navbar from "../components/sections/Navbar";
 import Footer from "../components/sections/Footer";
 import CardSpecialist from "../components/elements/CardSpecialist";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import axiosClient from "./axios-client";
 import { useEffect, useState } from "react";
 import LoadingAnimationPage from "../components/sections/LoadingAnimationPage";
 import { Specialist } from "../resources/types";
+import { setErrorNotification } from "../state/notification/errorNotificationSlice";
 
 export default function Specialists() {
+
+    const dispatch = useDispatch()
+
     const theme = useSelector((state: RootState) => state.theme.theme);
     const root = document.documentElement;
     root.style.setProperty(
@@ -27,15 +31,9 @@ export default function Specialists() {
                 setDataFetched(true);
             })
             .catch((err) => {
-                const response = err.response;
 
-                if (response && response.status === 500) {
-                    alert(
-                        "An error occurred while processing your request. Please try again later."
-                    );
-                } else {
-                    console.log(response.data);
-                }
+                dispatch(setErrorNotification("The error has appeared"));
+
             });
     }, []);
 

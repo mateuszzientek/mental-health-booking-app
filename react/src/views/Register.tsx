@@ -10,6 +10,7 @@ import axiosClient from "./axios-client";
 import { setToken, setUser } from "../state/user/userSlice";
 import CircleSvg from "../components/elements/CircleSvg";
 import { ServerErrors } from "../resources/types";
+import { setErrorNotification } from "../state/notification/errorNotificationSlice";
 
 
 export default function Register() {
@@ -72,7 +73,7 @@ export default function Register() {
                     console.log(response.data.errors);
                     setErrors(response.data.errors);
                 } else {
-                    console.log(response);
+                    dispatch(setErrorNotification("The error has appeared"));
                 }
             })
             .finally(() => {

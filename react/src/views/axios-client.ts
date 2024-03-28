@@ -5,9 +5,9 @@ const axiosClient = axios.create({
 })
 // specjalna funkcja ktora wykona się przed wyslaniem request
 
-axiosClient.interceptors.request.use((config) => { 
+axiosClient.interceptors.request.use((config) => {
 const token = localStorage.getItem("ACCESS_TOKEN")
-config.headers.Authorization =`Bearer ${token}` 
+config.headers.Authorization =`Bearer ${token}`
 return config;
 })
 
@@ -15,6 +15,11 @@ return config;
 axiosClient.interceptors.response.use((response) =>{
  return response
 }, (error) =>{
+
+    if (error.message === "Network Error" && !error.response) {
+        alert("The is no connection to server");
+    }
+
    const {response} = error
    if(response.status === 401){
       localStorage.removeItem("ACCESS_TOKEN")

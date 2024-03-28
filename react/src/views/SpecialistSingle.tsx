@@ -7,10 +7,13 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/sections/Navbar";
 import Footer from "../components/sections/Footer";
 import circle from "../assets/images/circle.png";
+import { useDispatch } from "react-redux";
+import { setErrorNotification } from "../state/notification/errorNotificationSlice";
 
 export default function SpecialistSingle() {
     const [dataFetched, setDataFetched] = useState(false);
 
+    const dispatch = useDispatch()
     const { id } = useParams();
     const [specialist, setSpecialist] = useState<Specialist | null>(null);
     const navigate = useNavigate();
@@ -34,15 +37,9 @@ export default function SpecialistSingle() {
                 }
             })
             .catch((err) => {
-                const response = err.response;
 
-                if (response && response.status === 500) {
-                    alert(
-                        "An error occurred while processing your request. Please try again later."
-                    );
-                } else {
-                    console.log(response.data);
-                }
+                dispatch(setErrorNotification("The error has appeared"));
+
             });
     }, []);
 

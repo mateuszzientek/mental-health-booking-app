@@ -5,6 +5,7 @@ import { setUser } from "../../state/user/userSlice";
 import { RootState } from "../../state/store";
 import LoadingAnimationPage from "../sections/LoadingAnimationPage";
 import { Outlet, useNavigate } from "react-router-dom";
+import { setErrorNotification } from "../../state/notification/errorNotificationSlice";
 
 export default function AuthLayout() {
     const dispatch = useDispatch();
@@ -25,6 +26,10 @@ export default function AuthLayout() {
                 .get("/user")
                 .then(({ data }) => {
                     dispatch(setUser(data));
+                }).catch(() => {
+
+                    dispatch(setErrorNotification("The error has appeared"));
+
                 })
                 .finally(() => {
                     setIsDataFetched(true);

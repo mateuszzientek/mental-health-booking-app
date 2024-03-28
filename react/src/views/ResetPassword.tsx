@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axiosClient from "./axios-client";
 import { setMessage } from "../state/notification/notificationSlice";
 import { ServerErrors } from "../resources/types";
+import { setErrorNotification } from "../state/notification/errorNotificationSlice";
 
 
 export default function ResetPassword() {
@@ -43,13 +44,9 @@ export default function ResetPassword() {
                 }
 
             }).catch(err => {
-                const response = err.response
 
-                if (response && response.status === 500) {
-                    alert("An error occurred while processing your request. Please try again later.")
-                } else {
-                    console.log(response.data)
-                }
+                dispatch(setErrorNotification("The error has appeared"));
+
             }).finally(() => {
                 setDataFetched(true)
             })

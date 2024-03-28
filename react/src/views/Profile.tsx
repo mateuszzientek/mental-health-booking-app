@@ -36,7 +36,7 @@ export default function Profile() {
                         className={`flex bg-white dark:bg-[#2d2d2d] ${theme === "light" && "shadow "
                             }w-full  px-10  rounded-md mt-14`}
                     >
-                        <div className="w-[25%] border-r-2 border-black/10 space-y-12">
+                        <div className="w-[25%] border-r-2 border-black/10 dark:border-white/20 space-y-12">
                             <div
                                 onClick={() => selectOption("account")}
                                 className="flex items-center space-x-4 mt-10 cursor-pointer"

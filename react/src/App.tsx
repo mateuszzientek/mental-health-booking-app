@@ -5,10 +5,8 @@ import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTheme } from './state/theme/themeSlice';
 import { RootState } from './state/store';
-import axiosClient from './views/axios-client';
-import { setUser } from './state/user/userSlice';
 import Notification from './components/elements/Notification';
-
+import ErrorNotification from './components/elements/ErrorNotification';
 
 
 export default function App() {
@@ -17,8 +15,6 @@ export default function App() {
 
 
     const theme = useSelector((state: RootState) => state.theme.theme);
-    const user = useSelector((state: RootState) => state.user.user);
-    const [userDataFetched, setUserDataFetched] = useState(false);
 
     useEffect(() => {
         document.body.className = theme;
@@ -38,8 +34,8 @@ export default function App() {
 
 
     return (
-
         <div >
+            <ErrorNotification />
             <Notification />
             <RouterProvider router={router} />
         </div>

@@ -16,6 +16,7 @@ import axiosClient from "../../views/axios-client";
 import { setToken, setUser } from "../../state/user/userSlice";
 import CircleSvg from "../elements/CircleSvg";
 import { useState } from "react";
+import { setErrorNotification } from "../../state/notification/errorNotificationSlice";
 
 interface NavbarProps {
     transparent: boolean;
@@ -40,6 +41,8 @@ export default function Navbar(props: NavbarProps) {
             .then(() => {
                 dispatch(setUser(null));
                 dispatch(setToken(null));
+            }).catch(() => {
+                dispatch(setErrorNotification("The error has appeared"));
             })
             .finally(() => {
                 setIsSubmittingLogout(false);
@@ -109,11 +112,10 @@ export default function Navbar(props: NavbarProps) {
             </div>
 
             <div
-                className={`flex h-28 ${
-                    props.transparent
+                className={`flex h-28 ${props.transparent
                         ? "bg-transparent"
                         : "bg-background shadow-md"
-                } items-center z-40`}
+                    } items-center z-40`}
             >
                 <div className=" flex items-center justify-between h-32 w-[89rem] mx-auto ">
                     <div onClick={() => navigate("/")}>
@@ -174,11 +176,10 @@ export default function Navbar(props: NavbarProps) {
                                             />
                                         )}
                                         <p
-                                            className={` dark:text-white ${
-                                                isSubmittingLogout
+                                            className={` dark:text-white ${isSubmittingLogout
                                                     ? "text-white"
                                                     : "text-primary group-hover:text-white"
-                                            } `}
+                                                } `}
                                         >
                                             Logout
                                         </p>

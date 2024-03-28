@@ -11,6 +11,7 @@ import CircleSvg from "../components/elements/CircleSvg";
 import { IoMdClose } from "react-icons/io";
 import { setMessage } from "../state/notification/notificationSlice";
 import { ServerErrors } from "../resources/types";
+import { setErrorNotification } from "../state/notification/errorNotificationSlice";
 
 export default function Login() {
     const dispatch = useDispatch();
@@ -65,12 +66,8 @@ export default function Login() {
                     setErrorsReset({
                         email: [response.data.message],
                     });
-                } else if (response && response.status === 500) {
-                    alert(
-                        "An error occurred while processing your request. Please try again later."
-                    );
                 } else {
-                    console.log(response.data);
+                    dispatch(setErrorNotification("The error has appeared"));
                 }
             })
             .finally(() => {
@@ -111,7 +108,7 @@ export default function Login() {
                         });
                     }
                 } else {
-                    console.log(err);
+                    dispatch(setErrorNotification("The error has appeared"));
                 }
             })
             .finally(() => {

@@ -12,6 +12,7 @@ import faqs from "../resources/faqs";
 import axiosClient from "./axios-client";
 import { setMessage } from "../state/notification/notificationSlice";
 import { ServerErrors } from "../resources/types";
+import { setErrorNotification } from "../state/notification/errorNotificationSlice";
 
 
 
@@ -69,17 +70,17 @@ export default function Contact() {
                 setText("");
             })
             .catch((err) => {
+
+                if (err.message === "Network Error" && !err.response) {
+                    dispatch(setErrorNotification("The is no connection to server"));
+                }
+
                 const response = err.response;
-                console.log(response.data);
 
                 if (response.data.errors && response.status === 422) {
                     setErrors(response.data.errors);
-                } else if (response && response.status === 500) {
-                    alert(
-                        "An error occurred while processing your request. Please try again later."
-                    );
                 } else {
-                    console.log(response.data);
+                    dispatch(setErrorNotification("The error has appeared"));
                 }
             })
             .finally(() => {
@@ -208,7 +209,7 @@ export default function Contact() {
                                 {errors && (
                                     <div>
                                         {Object.keys(errors).map((key) => (
-                                            <p className="text-sm text-red-500 text-start mt-2">
+                                            <p key={key} className="text-sm text-red-500 text-start mt-2">
                                                 {errors[key][0]}
                                             </p>
                                         ))}

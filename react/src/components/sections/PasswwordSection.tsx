@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import axiosClient from "../../views/axios-client";
 import { setMessage } from "../../state/notification/notificationSlice";
 import { useDispatch } from "react-redux";
+import { setErrorNotification } from "../../state/notification/errorNotificationSlice";
 
 export default function PasswordSection() {
 
@@ -74,7 +75,7 @@ export default function PasswordSection() {
                     }
 
                 } else {
-                    console.log(response);
+                    dispatch(setErrorNotification("The error has appeared"));
                 }
             })
             .finally(() => {

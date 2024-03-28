@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMessage } from "../../state/notification/notificationSlice";
 import { RootState } from "../../state/store";
 import { setUser } from "../../state/user/userSlice";
+import { setErrorNotification } from "../../state/notification/errorNotificationSlice";
 
 interface QuestionAnswers {
     [key: string]: string;
@@ -50,7 +51,7 @@ export default function QuestionSection() {
         axiosClient.put("/changeQuestionsUser", payload)
             .then((response) => {
 
-                const updatedUserData = response.data.user; // Zakładając, że dane użytkownika znajdują się pod kluczem 'user' w odpowiedzi
+                const updatedUserData = response.data.user;
 
                 dispatch(setUser(updatedUserData));
                 dispatch(setMessage("Data has been saved"));
@@ -62,7 +63,7 @@ export default function QuestionSection() {
                     console.log(response.data.errors)
                     setErrors(response.data.errors);
                 } else {
-                    console.log(response);
+                    dispatch(setErrorNotification("The error has appeared"));
                 }
             })
             .finally(() => {
@@ -84,28 +85,28 @@ export default function QuestionSection() {
                             <p className="text-xl text-text_80">{question.text}</p>
                             <div className="flex space-x-6">
                                 <label className="flex flex-col text-xl space-y-2 cursor-pointer">
-                                    Yes
+                                    <p className="text-text_80">Yes</p>
                                     <input
                                         onChange={() => handleChange(question.name, 'yes')}
                                         className="peer sr-only" type="radio" name={question.name}
                                         checked={answers[question.name] === 'yes'}
                                         value="yes" />
-                                    <div className="h-[25px] w-[25px] rounded-full  border-[2px] border-black/20 peer-checked:bg-primary  peer-checked:border-none ">
+                                    <div className="h-[25px] w-[25px] rounded-full  border-[2px] border-black/20 dark:border-white/40 peer-checked:bg-primary  peer-checked:border-none ">
                                     </div>
                                 </label>
                                 <label className="flex flex-col text-xl space-y-2 cursor-pointer">
-                                    No
+                                    <p className="text-text_80">No</p>
                                     <input
                                         onChange={() => handleChange(question.name, 'no')}
                                         className="peer sr-only" type="radio" name={question.name}
                                         checked={answers[question.name] === 'no'}
                                         value="no" />
-                                    <div className="h-[25px] w-[25px] rounded-full  border-[2px] border-black/20 peer-checked:bg-primary  peer-checked:border-none ">
+                                    <div className="h-[25px] w-[25px] rounded-full  border-[2px] border-black/20 dark:border-white/40 peer-checked:bg-primary  peer-checked:border-none ">
                                     </div>
                                 </label>
                             </div>
                         </div>
-                        <div className="mt-8 h-[2px] w-full bg-black/10"></div>
+                        <div className="mt-8 h-[2px] w-full bg-black/10 dark:bg-white/20"></div>
                     </div>
                 )
                 )}

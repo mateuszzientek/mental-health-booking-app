@@ -25,6 +25,7 @@ class EmailQuestionController extends Controller
             'content' => $request->content,
         ];
 
+
         try {
 
             Mail::send("emails.emailQuestion", ['emailData' => $emailData], function ($message) use ($emailData) {
